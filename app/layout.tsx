@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import { Jost, Fraunces, Playfair_Display } from 'next/font/google'
+import { Analytics } from '@vercel/analytics/react'
 import { Providers } from '@/components/Providers'
 import './globals.css'
 
@@ -41,6 +42,7 @@ export default function RootLayout({
     <html lang="es" className={`${jost.variable} ${fraunces.variable} ${playfair.variable}`}>
       <body className="font-sans">
         <Providers>{children}</Providers>
+        <Analytics />
       </body>
     </html>
   )
