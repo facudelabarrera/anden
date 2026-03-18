@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Alfarn W05';
+  src: url('/assets/fonts/AlfarnW05-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-cream text-brown-dark;
+  }
+}
+
+@layer utilities {
+  .font-variation-normal {
+    font-variation-settings: 'SOFT' 0, 'WONK' 1;
+  }
+}
