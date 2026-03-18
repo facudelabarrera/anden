@@ -1,12 +1,14 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import type { TargetAndTransition } from 'framer-motion'
 import type { ReactNode } from 'react'
 import { variants, VIEWPORT } from '@/lib/motion'
 
 interface Props {
   children: ReactNode
   className?: string
+  whileHover?: TargetAndTransition
 }
 
 /**
@@ -29,9 +31,9 @@ export function StaggerParent({ children, className }: Props) {
 }
 
 /** Direct child of StaggerParent. Replaces the card/item outer div. */
-export function StaggerChild({ children, className }: Props) {
+export function StaggerChild({ children, className, whileHover }: Props) {
   return (
-    <motion.div className={className} variants={variants.staggerChild}>
+    <motion.div className={className} variants={variants.staggerChild} whileHover={whileHover}>
       {children}
     </motion.div>
   )

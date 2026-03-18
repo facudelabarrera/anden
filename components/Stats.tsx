@@ -23,20 +23,20 @@ const STATS = [
 export default function Stats() {
   return (
     <section className="mx-auto max-w-content px-4 lg:px-0">
-      <StaggerParent className="flex flex-wrap items-center justify-between gap-y-6 rounded-2xl bg-blue-brand px-6 py-4 text-center text-cream-light">
+      <StaggerParent className="flex flex-wrap items-center justify-between gap-y-6 px-6 py-4 text-center text-blue-brand">
         {STATS.map((stat, i) => (
           <StaggerChild
             key={i}
             className="flex min-w-[140px] flex-1 flex-col items-center justify-center gap-2"
           >
-            <p className="font-alfarn text-xl md:text-2xl">
+            <p className="font-alfarn text-2xl md:text-3xl lg:text-4xl">
               {'counter' in stat ? (
                 <AnimatedCounter {...stat.counter} />
               ) : (
                 stat.static
               )}
             </p>
-            <p className="whitespace-pre-line font-sans text-[11px] leading-[14px] md:text-xs">
+            <p className="whitespace-pre-line font-sans text-[11px] leading-[14px] opacity-60 md:text-xs">
               {stat.label}
             </p>
           </StaggerChild>

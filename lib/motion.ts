@@ -13,8 +13,8 @@ export const DURATION = {
 /** Delay between staggered children (seconds) */
 export const STAGGER = 0.08
 
-/** Scroll viewport threshold — trigger when 15% of element is visible, animate once */
-export const VIEWPORT = { once: true, amount: 0.15 } as const
+/** Scroll viewport threshold — trigger when 10% visible, re-trigger on every entry */
+export const VIEWPORT = { once: false, amount: 0.1 } as const
 
 /** Pre-built variant sets */
 export const variants = {
@@ -27,7 +27,7 @@ export const variants = {
     visible: { transition: { staggerChildren: STAGGER } },
   },
   staggerChild: {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: DURATION.md, ease: EASE } },
+    hidden: { opacity: 0, y: 28, scale: 0.96 },
+    visible: { opacity: 1, y: 0, scale: 1, transition: { duration: DURATION.md, ease: EASE } },
   },
 } as const

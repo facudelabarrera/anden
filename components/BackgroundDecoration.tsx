@@ -1,53 +1,209 @@
-/**
- * Full-page decorative SVG background.
- *
- * Architecture decisions:
- * - `absolute` (not `fixed`): the SVG is 5752px tall with paths positioned at
- *   specific Y coords per section. Fixed would show only the top ~900px
- *   regardless of scroll, hiding most of the designer's work.
- * - `<picture>` with `<source media>`: browser downloads ONLY the matching
- *   breakpoint SVG — no wasted bandwidth on hidden files.
- * - `w-full h-auto`: SVG scales horizontally to viewport width; vertical paths
- *   maintain their relative positions as the user scrolls through sections.
- * - Opacity baked into SVGs (paths at 0.5 inside the SVG itself). Add a CSS
- *   `opacity-[n]` class to the wrapper `<div>` below to adjust globally.
- *
- * Breakpoints:
- *   default  (<768px)   → bg-mobile.svg    (393px canvas)
- *   md       (≥768px)   → bg-tablet.svg    (1200px canvas, tablet layout)
- *   lg       (≥1024px)  → bg-desktop.svg   (1200px canvas)
- *   xl       (≥1280px)  → bg-desktop-xl.svg (1920px canvas)
- */
+'use client'
+
+import { useEffect, useRef } from 'react'
+
+interface AnimatedPathProps {
+  d: string
+  stroke: string
+  strokeWidth?: number | string
+  delay?: number
+}
+
+function AnimatedPath({ d, stroke, strokeWidth = 1, delay = 0 }: AnimatedPathProps) {
+  const ref = useRef<SVGPathElement>(null)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+
+    let length = 0
+    try { length = el.getTotalLength() } catch { return }
+    if (!length) return
+
+    el.style.strokeDasharray = String(length)
+    el.style.strokeDashoffset = String(length)
+
+    let timer: ReturnType<typeof setTimeout> | null = null
+
+    const io = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        timer = setTimeout(() => {
+          el.style.transition = `stroke-dashoffset 1.5s cubic-bezier(0, 0, 0.2, 1)`
+          el.style.strokeDashoffset = '0'
+        }, delay)
+      } else {
+        if (timer) clearTimeout(timer)
+        el.style.transition = 'none'
+        el.style.strokeDashoffset = String(length)
+      }
+    }, { threshold: 0, rootMargin: '80px 0px 80px 0px' })
+
+    io.observe(el)
+    return () => { io.disconnect(); if (timer) clearTimeout(timer) }
+  }, [delay])
+
+  return <path ref={ref} d={d} stroke={stroke} strokeWidth={strokeWidth} fill="none" />
+}
+
+// Delays cycle to stagger paths that enter the viewport simultaneously
+const D = (i: number) => (i * 67) % 220
+
 export function BackgroundDecoration() {
   return (
     <div
       aria-hidden="true"
       className="pointer-events-none absolute inset-0 z-0 select-none overflow-hidden"
     >
-      <picture>
-        <source
-          media="(min-width: 1280px)"
-          srcSet="/assets/bg/bg-desktop-xl.svg"
-        />
-        <source
-          media="(min-width: 1024px)"
-          srcSet="/assets/bg/bg-desktop.svg"
-        />
-        <source
-          media="(min-width: 768px)"
-          srcSet="/assets/bg/bg-tablet.svg"
-        />
-        <img
-          src="/assets/bg/bg-mobile.svg"
-          alt=""
-          width={393}
-          height={5752}
-          className="w-full h-auto"
-          loading="eager"
-          decoding="async"
-          fetchPriority="low"
-        />
-      </picture>
+      {/* ─── Mobile (< 768px) ─────────────────────────────────────── */}
+      <svg
+        className="block md:hidden w-full h-auto"
+        width="393" height="5752" viewBox="0 0 393 5752"
+        fill="none" xmlns="http://www.w3.org/2000/svg"
+      >
+        <rect width="393" height="5752" fill="#F2ECE0" />
+        <g opacity="0.3">
+          <AnimatedPath delay={D(0)}  d="M392.907 5752H188.598L145 5718.57V5635H392.907" stroke="#E0E738" strokeWidth={10} />
+          <AnimatedPath delay={D(1)}  d="M6.74078 5278H211.492L235.085 5316.25V5601.78H108.274L75.4368 5694H0" stroke="#F9982F" strokeWidth={10} />
+          <AnimatedPath delay={D(2)}  d="M392.796 4699H156.857L50 4614.53V4517H392.796" stroke="#F9982F" strokeWidth={10} />
+          <AnimatedPath delay={D(3)}  d="M392.62 2928H275.382L220.614 3003.7H-16V3076.44L43.0466 3158.05V3203H392.62" stroke="#390400" strokeWidth={1.00259} />
+          <AnimatedPath delay={D(4)}  d="M9.40338 2011L44.0249 2104.06V2286.63L77.7916 2333.16V2377.92L44.0249 2404.78V2506.31L0 2587" stroke="#A9D6F3" strokeWidth={10} />
+          <AnimatedPath delay={D(5)}  d="M389.313 4308H354.925V4550.87L284 4647.9V4885.48H367.391V5200.1L393.421 5333" stroke="#A9D6F3" strokeWidth={10} />
+          <AnimatedPath delay={D(6)}  d="M-0.374895 4870L162.443 4661.49H233V4355.57L101.78 4162H14.585" stroke="#A9D6F3" strokeWidth={10} />
+          <AnimatedPath delay={D(7)}  d="M393.436 4095L343 4010.43L343 3675.45L364.371 3656.22L364.371 2892.16L388.307 2733" stroke="#390400" strokeWidth={1.00259} />
+          <AnimatedPath delay={D(8)}  d="M0 3031L70.6226 3031L70.6226 2927.08L85.4853 2913.02L85.4853 2877L3.41941 2877" stroke="#E0E738" strokeWidth={10} />
+          <AnimatedPath delay={D(9)}  d="M0 3524L28.3791 3456.42V3378.26V2993.35H107.711V2921.48L50.1779 2852.88V2582.58L5.12912 2515" stroke="#390400" />
+          <AnimatedPath delay={D(10)} d="M366.54 2270L286.099 2380.79V2577.4L180.679 2666.41H113.463V2938.2V3128.58H172.39L234.14 3285H393" stroke="#E0E738" strokeWidth={10} />
+          <AnimatedPath delay={D(11)} d="M0 1831H59.1355L73.2903 1892.17H129.28H243.641L273.486 2021H374.144L378.449 1951.63H393" stroke="#390400" strokeWidth={1.00259} />
+          <AnimatedPath delay={D(12)} d="M393.375 2547L230.557 2339.08H160V2034.02L291.22 1841H378.415" stroke="#A9D6F3" strokeWidth={10} />
+          <AnimatedPath delay={D(13)} d="M393 726L323.084 726L323.084 829.923L308.37 843.978L308.37 880L393 880" stroke="#E0E738" strokeWidth={10} />
+          <AnimatedPath delay={D(14)} d="M-30.0178 221L47.7718 353.3L47.7718 613.195L70 666.323L70 749.999L-30.0178 750" stroke="#A9D6F3" strokeWidth={10} />
+          <AnimatedPath delay={D(15)} d="M0.821307 620L81.5545 249H338.282L361.849 308.553H392.821" stroke="#E0E738" strokeWidth={13.0897} />
+          <AnimatedPath delay={D(16)} d="M1 966H118.423L125.163 1000H393" stroke="#390400" />
+          <AnimatedPath delay={D(17)} d="M0 863H76.1276L156.012 1112.89H340.653L393 1320" stroke="#F9982F" strokeWidth={10} />
+          <AnimatedPath delay={D(18)} d="M393.133 685L243.181 455.453H176V102.273L230.116 -9.00001" stroke="#F9982F" strokeWidth={10} />
+          <AnimatedPath delay={D(19)} d="M126 -243V99.7607H251.153L343.988 201.694V892.299L392.714 954" stroke="#390400" strokeWidth={1.00259} />
+          <AnimatedPath delay={D(20)} d="M-4.16438e-07 2962L48.6241 2962L74.8063 2898L139.46 2898L161.234 2962L205.907 2962L226.133 3071L329.014 3071L355.864 2962L393 2962" stroke="#F9982F" strokeWidth={10} />
+          <AnimatedPath delay={D(21)} d="M0.000976562 4269H57.4982V4493.5L119.68 4560.5V4651H0.000976562" stroke="#390400" />
+          <AnimatedPath delay={D(22)} d="M393 5729H334.007L319.886 5667.43H264.031H131.135L119.226 5643H18.811L14.5156 5712.82H1.68085e-05" stroke="#390400" strokeWidth={1.00259} />
+          <AnimatedPath delay={D(23)} d="M392.663 4459L320 4514.27V4674.8L349.32 4715.37V4994.09L392.663 5077" stroke="#390400" />
+          <AnimatedPath delay={D(24)} d="M0 4605.27H104.683L128.517 4665H258.524L271.16 4570H393" stroke="#390400" />
+          <AnimatedPath delay={D(25)} d="M393.313 3950H207.382C190.427 3936.46 156.518 3909.39 156.518 3909.39H30V3863.49H113.134L156.518 3829H284.746L311.299 3892.33H393.313" stroke="#390400" />
+        </g>
+      </svg>
+
+      {/* ─── Tablet (768px – 1023px) ──────────────────────────────── */}
+      <svg
+        className="hidden md:block lg:hidden w-full h-auto"
+        width="1200" height="5752" viewBox="0 0 1200 5752"
+        fill="none" xmlns="http://www.w3.org/2000/svg"
+      >
+        <rect width="1200" height="5752" fill="#F2ECE0" />
+        <g opacity="0.3">
+          <AnimatedPath delay={D(0)}  d="M1199.91 5752H995.598L952 5718.57V5635H1199.91" stroke="#E0E738" strokeWidth={10} />
+          <AnimatedPath delay={D(1)}  d="M6.74078 5278H211.492L235.085 5316.25V5601.78H108.274L75.4368 5694H0" stroke="#F9982F" strokeWidth={10} />
+          <AnimatedPath delay={D(2)}  d="M1199.8 4699H963.857L857 4614.53V4517H1199.8" stroke="#F9982F" strokeWidth={10} />
+          <AnimatedPath delay={D(3)}  d="M1199.62 2928H1082.38L1027.61 3003.7H791V3076.44L850.047 3158.05V3203H1199.62" stroke="#390400" strokeWidth={1.00259} />
+          <AnimatedPath delay={D(4)}  d="M9.40338 2011L44.0249 2104.06V2286.63L77.7916 2333.16V2377.92L44.0249 2404.78V2506.31L0 2587" stroke="#A9D6F3" strokeWidth={10} />
+          <AnimatedPath delay={D(5)}  d="M1196.31 4308H1161.93V4550.87L1091 4647.9V4885.48H1174.39V5200.1L1200.42 5333" stroke="#A9D6F3" strokeWidth={10} />
+          <AnimatedPath delay={D(6)}  d="M-0.374895 4870L162.443 4661.49H233V4355.57L101.78 4162H14.585" stroke="#A9D6F3" strokeWidth={10} />
+          <AnimatedPath delay={D(7)}  d="M1200.44 4095L1150 4010.43L1150 3675.45L1171.37 3656.22L1171.37 2892.16L1195.31 2733" stroke="#390400" strokeWidth={1.00259} />
+          <AnimatedPath delay={D(8)}  d="M0 3031L70.6226 3031L70.6226 2927.08L85.4853 2913.02L85.4853 2877L3.41941 2877" stroke="#E0E738" strokeWidth={10} />
+          <AnimatedPath delay={D(9)}  d="M0 3524L28.3791 3456.42V3378.26V2993.35H107.711V2921.48L50.1779 2852.88V2582.58L5.12912 2515" stroke="#390400" />
+          <AnimatedPath delay={D(10)} d="M1173.54 2270L1093.1 2380.79V2577.4L987.679 2666.41H920.463V2938.2V3128.58H979.39L1041.14 3285H1200" stroke="#E0E738" strokeWidth={10} />
+          <AnimatedPath delay={D(11)} d="M0 1831H180.566L223.787 1892.17H394.749H743.942L835.071 2021H1142.42L1155.57 1951.63H1200" stroke="#390400" strokeWidth={1.00259} />
+          <AnimatedPath delay={D(12)} d="M1200.37 2547L1037.56 2339.08H967V2034.02L1098.22 1841H1185.41" stroke="#A9D6F3" strokeWidth={10} />
+          <AnimatedPath delay={D(13)} d="M1200 726L1130.08 726L1130.08 829.923L1115.37 843.978L1115.37 880L1200 880" stroke="#E0E738" strokeWidth={10} />
+          <AnimatedPath delay={D(14)} d="M-0.0177802 221L77.7718 353.3L77.7718 613.195L100 666.323L100 749.999L-0.0177828 750" stroke="#A9D6F3" strokeWidth={10} />
+          <AnimatedPath delay={D(15)} d="M0.821259 620L247.758 249H1033L1105.09 308.553H1199.82" stroke="#E0E738" strokeWidth={13.0897} />
+          <AnimatedPath delay={D(16)} d="M0 890H333.397L352.535 924H1113" stroke="#390400" />
+          <AnimatedPath delay={D(17)} d="M0 863H232.451L476.373 1112.89H1040.16L1200 1320" stroke="#F9982F" strokeWidth={10} />
+          <AnimatedPath delay={D(18)} d="M1200.13 685L1050.18 455.453H983V102.273L1037.12 -9.00001" stroke="#F9982F" strokeWidth={10} />
+          <AnimatedPath delay={D(19)} d="M933 3V345.761H1058.15L1150.99 447.694V1138.3L1199.71 1200" stroke="#390400" strokeWidth={1.00259} />
+          <AnimatedPath delay={D(20)} d="M-0.178688 528L172.69 273.549H340.923L383.454 213.996H561.137H1129.71L1199.82 128" stroke="#390400" strokeWidth={1.00259} />
+          <AnimatedPath delay={D(21)} d="M-1.27157e-06 2962L148.47 2962L228.416 2898L425.833 2898L492.318 2962L628.724 2962L690.481 3071L1004.62 3071L1086.61 2962L1200 2962" stroke="#F9982F" strokeWidth={10} />
+          <AnimatedPath delay={D(22)} d="M0 4269H57.4972V4493.5L119.679 4560.5V4651H0" stroke="#390400" />
+          <AnimatedPath delay={D(23)} d="M1200 5729H1019.87L976.752 5667.43H806.203H400.413L364.05 5643H57.438L44.3224 5712.82H-2.00272e-05" stroke="#390400" strokeWidth={1.00259} />
+          <AnimatedPath delay={D(24)} d="M1199.66 4459L1127 4514.27V4674.8L1156.32 4715.37V4994.09L1199.66 5077" stroke="#390400" />
+          <AnimatedPath delay={D(25)} d="M0 4605.27H319.642L392.419 4665H789.387L827.97 4570H1200" stroke="#390400" />
+          <AnimatedPath delay={D(26)} d="M1200.31 3950H1014.38C997.427 3936.46 963.518 3909.39 963.518 3909.39H837V3863.49H920.134L963.518 3829H1091.75L1118.3 3892.33H1200.31" stroke="#390400" />
+        </g>
+      </svg>
+
+      {/* ─── Desktop (1024px – 1279px) ────────────────────────────── */}
+      <svg
+        className="hidden lg:block xl:hidden w-full h-auto"
+        width="1200" height="5752" viewBox="0 0 1200 5752"
+        fill="none" xmlns="http://www.w3.org/2000/svg"
+      >
+        <rect width="1200" height="5752" fill="#F2ECE0" />
+        <g opacity="0.3">
+          <AnimatedPath delay={D(0)}  d="M1199.91 5752H995.598L952 5718.57V5635H1199.91" stroke="#E0E738" strokeWidth={10} />
+          <AnimatedPath delay={D(1)}  d="M6.74078 5278H211.492L235.085 5316.25V5601.78H108.274L75.4368 5694H0" stroke="#F9982F" strokeWidth={10} />
+          <AnimatedPath delay={D(2)}  d="M1199.8 4699H963.857L857 4614.53V4517H1199.8" stroke="#F9982F" strokeWidth={10} />
+          <AnimatedPath delay={D(3)}  d="M1199.62 2928H1082.38L1027.61 3003.7H791V3076.44L850.047 3158.05V3203H1199.62" stroke="#390400" strokeWidth={1.00259} />
+          <AnimatedPath delay={D(4)}  d="M9.40338 2011L44.0249 2104.06V2286.63L77.7916 2333.16V2377.92L44.0249 2404.78V2506.31L0 2587" stroke="#A9D6F3" strokeWidth={10} />
+          <AnimatedPath delay={D(5)}  d="M1196.31 4308H1161.93V4550.87L1091 4647.9V4885.48H1174.39V5200.1L1200.42 5333" stroke="#A9D6F3" strokeWidth={10} />
+          <AnimatedPath delay={D(6)}  d="M-0.374895 4870L162.443 4661.49H233V4355.57L101.78 4162H14.585" stroke="#A9D6F3" strokeWidth={10} />
+          <AnimatedPath delay={D(7)}  d="M1200.44 4095L1150 4010.43L1150 3675.45L1171.37 3656.22L1171.37 2892.16L1195.31 2733" stroke="#390400" strokeWidth={1.00259} />
+          <AnimatedPath delay={D(8)}  d="M0 3031L70.6226 3031L70.6226 2927.08L85.4853 2913.02L85.4853 2877L3.41941 2877" stroke="#E0E738" strokeWidth={10} />
+          <AnimatedPath delay={D(9)}  d="M0 3524L28.3791 3456.42V3378.26V2993.35H107.711V2921.48L50.1779 2852.88V2582.58L5.12912 2515" stroke="#390400" />
+          <AnimatedPath delay={D(10)} d="M1173.54 2270L1093.1 2380.79V2577.4L987.679 2666.41H920.463V2938.2V3128.58H979.39L1041.14 3285H1200" stroke="#E0E738" strokeWidth={10} />
+          <AnimatedPath delay={D(11)} d="M0 1831H180.566L223.787 1892.17H394.749H743.942L835.071 2021H1142.42L1155.57 1951.63H1200" stroke="#390400" strokeWidth={1.00259} />
+          <AnimatedPath delay={D(12)} d="M1200.37 2547L1037.56 2339.08H967V2034.02L1098.22 1841H1185.41" stroke="#A9D6F3" strokeWidth={10} />
+          <AnimatedPath delay={D(13)} d="M1200 726L1130.08 726L1130.08 829.923L1115.37 843.978L1115.37 880L1200 880" stroke="#E0E738" strokeWidth={10} />
+          <AnimatedPath delay={D(14)} d="M-0.0177802 221L77.7718 353.3L77.7718 613.195L100 666.323L100 749.999L-0.0177828 750" stroke="#A9D6F3" strokeWidth={10} />
+          <AnimatedPath delay={D(15)} d="M0.821259 620L247.758 249H1033L1105.09 308.553H1199.82" stroke="#E0E738" strokeWidth={13.0897} />
+          <AnimatedPath delay={D(16)} d="M0 890H333.397L352.535 924H1113" stroke="#390400" />
+          <AnimatedPath delay={D(17)} d="M0 863H232.451L476.373 1112.89H1040.16L1200 1320" stroke="#F9982F" strokeWidth={10} />
+          <AnimatedPath delay={D(18)} d="M1200.13 685L1050.18 455.453H983V102.273L1037.12 -9.00001" stroke="#F9982F" strokeWidth={10} />
+          <AnimatedPath delay={D(19)} d="M933 3V345.761H1058.15L1150.99 447.694V1138.3L1199.71 1200" stroke="#390400" strokeWidth={1.00259} />
+          <AnimatedPath delay={D(20)} d="M-0.178688 528L172.69 273.549H340.923L383.454 213.996H561.137H1129.71L1199.82 128" stroke="#390400" strokeWidth={1.00259} />
+          <AnimatedPath delay={D(21)} d="M-1.27157e-06 2962L148.47 2962L228.416 2898L425.833 2898L492.318 2962L628.724 2962L690.481 3071L1004.62 3071L1086.61 2962L1200 2962" stroke="#F9982F" strokeWidth={10} />
+          <AnimatedPath delay={D(22)} d="M0 4269H57.4972V4493.5L119.679 4560.5V4651H0" stroke="#390400" />
+          <AnimatedPath delay={D(23)} d="M1200 5729H1019.87L976.752 5667.43H806.203H400.413L364.05 5643H57.438L44.3224 5712.82H-2.00272e-05" stroke="#390400" strokeWidth={1.00259} />
+          <AnimatedPath delay={D(24)} d="M1199.66 4459L1127 4514.27V4674.8L1156.32 4715.37V4994.09L1199.66 5077" stroke="#390400" />
+          <AnimatedPath delay={D(25)} d="M0 4605.27H319.642L392.419 4665H789.387L827.97 4570H1200" stroke="#390400" />
+          <AnimatedPath delay={D(26)} d="M1200.31 3950H1014.38C997.427 3936.46 963.518 3909.39 963.518 3909.39H837V3863.49H920.134L963.518 3829H1091.75L1118.3 3892.33H1200.31" stroke="#390400" />
+        </g>
+      </svg>
+
+      {/* ─── Desktop XL (≥ 1280px) ────────────────────────────────── */}
+      <svg
+        className="hidden xl:block w-full h-auto"
+        width="1920" height="5752" viewBox="0 0 1920 5752"
+        fill="none" xmlns="http://www.w3.org/2000/svg"
+      >
+        <rect width="1920" height="5752" fill="#F2ECE0" />
+        <g opacity="0.3">
+          <AnimatedPath delay={D(0)}  d="M1919.91 5752H1715.6L1672 5718.57V5635H1919.91" stroke="#E0E738" strokeWidth={10} />
+          <AnimatedPath delay={D(1)}  d="M6.74078 5278H211.492L235.085 5316.25V5601.78H108.274L75.4368 5694H0" stroke="#F9982F" strokeWidth={10} />
+          <AnimatedPath delay={D(2)}  d="M1919.8 4699H1683.86L1577 4614.53V4517H1919.8" stroke="#F9982F" strokeWidth={10} />
+          <AnimatedPath delay={D(3)}  d="M1919.62 2928H1802.38L1747.61 3003.7H1511V3076.44L1570.05 3158.05V3203H1919.62" stroke="#390400" strokeWidth={1.00259} />
+          <AnimatedPath delay={D(4)}  d="M9.40338 2011L44.0249 2104.06V2286.63L77.7916 2333.16V2377.92L44.0249 2404.78V2506.31L0 2587" stroke="#A9D6F3" strokeWidth={10} />
+          <AnimatedPath delay={D(5)}  d="M1916.31 4308H1881.93V4550.87L1811 4647.9V4885.48H1894.39V5200.1L1920.42 5333" stroke="#A9D6F3" strokeWidth={10} />
+          <AnimatedPath delay={D(6)}  d="M-0.374895 4870L162.443 4661.49H233V4355.57L101.78 4162H14.585" stroke="#A9D6F3" strokeWidth={10} />
+          <AnimatedPath delay={D(7)}  d="M1920.44 4095L1870 4010.43L1870 3675.45L1891.37 3656.22L1891.37 2892.16L1915.31 2733" stroke="#390400" strokeWidth={1.00259} />
+          <AnimatedPath delay={D(8)}  d="M0 3031L70.6226 3031L70.6226 2927.08L85.4853 2913.02L85.4853 2877L3.41941 2877" stroke="#E0E738" strokeWidth={10} />
+          <AnimatedPath delay={D(9)}  d="M0 3524L28.3791 3456.42V3378.26V2993.35H107.711V2921.48L50.1779 2852.88V2582.58L5.12912 2515" stroke="#390400" />
+          <AnimatedPath delay={D(10)} d="M1893.54 2270L1813.1 2380.79V2577.4L1707.68 2666.41H1640.46V2938.2V3128.58H1699.39L1761.14 3285H1920" stroke="#E0E738" strokeWidth={10} />
+          <AnimatedPath delay={D(11)} d="M0 1831H288.906L358.059 1892.17H631.598H1190.31L1336.11 2021H1827.88L1848.91 1951.63H1920" stroke="#390400" strokeWidth={1.00259} />
+          <AnimatedPath delay={D(12)} d="M1920.37 2547L1757.56 2339.08H1687V2034.02L1818.22 1841H1905.41" stroke="#A9D6F3" strokeWidth={10} />
+          <AnimatedPath delay={D(13)} d="M1920 726L1850.08 726L1850.08 829.923L1835.37 843.978L1835.37 880L1920 880" stroke="#E0E738" strokeWidth={10} />
+          <AnimatedPath delay={D(14)} d="M-0.0177802 221L77.7718 353.3L77.7718 613.195L100 666.323L100 749.999L-0.0177828 750" stroke="#A9D6F3" strokeWidth={10} />
+          <AnimatedPath delay={D(15)} d="M0.82136 620L396.043 249H1652.83L1768.2 308.553H1919.82" stroke="#E0E738" strokeWidth={13.0897} />
+          <AnimatedPath delay={D(16)} d="M0 890H549.071L580.59 924H1833" stroke="#390400" />
+          <AnimatedPath delay={D(17)} d="M0 863H371.921L762.197 1112.89H1664.26L1920 1320" stroke="#F9982F" strokeWidth={10} />
+          <AnimatedPath delay={D(18)} d="M1920.13 685L1770.18 455.453H1703V102.273L1757.12 -9.00001" stroke="#F9982F" strokeWidth={10} />
+          <AnimatedPath delay={D(19)} d="M1653 3V345.761H1778.15L1870.99 447.694V1138.3L1919.71 1200" stroke="#390400" strokeWidth={1.00259} />
+          <AnimatedPath delay={D(20)} d="M-0.17878 528L276.412 273.549H545.584L613.633 213.996H897.927H1807.65L1919.82 128" stroke="#390400" strokeWidth={1.00259} />
+          <AnimatedPath delay={D(21)} d="M-2.0345e-06 2962L237.553 2962L365.466 2898L681.332 2898L787.709 2962L1005.96 2962L1104.77 3071L1607.4 3071L1738.57 2962L1920 2962" stroke="#F9982F" strokeWidth={10} />
+          <AnimatedPath delay={D(22)} d="M0 4269H57.4972V4493.5L119.679 4560.5V4651H0" stroke="#390400" />
+          <AnimatedPath delay={D(23)} d="M1920 5729H1631.79L1562.8 5667.43H1289.92H640.661L582.479 5643H91.9009L70.9159 5712.82H3.71933e-05" stroke="#390400" strokeWidth={1.00259} />
+          <AnimatedPath delay={D(24)} d="M1919.66 4459L1847 4514.27V4674.8L1876.32 4715.37V4994.09L1919.66 5077" stroke="#390400" />
+          <AnimatedPath delay={D(25)} d="M0 4605.27H511.427L627.87 4665H1263.02L1324.75 4570H1920" stroke="#390400" />
+          <AnimatedPath delay={D(26)} d="M1920.31 3950H1734.38C1717.43 3936.46 1683.52 3909.39 1683.52 3909.39H1557V3863.49H1640.13L1683.52 3829H1811.75L1838.3 3892.33H1920.31" stroke="#390400" />
+        </g>
+      </svg>
     </div>
   )
 }

@@ -1,10 +1,10 @@
 import { Reveal } from '@/components/motion/Reveal'
 import { StaggerParent, StaggerChild } from '@/components/motion/Stagger'
+import { TiltCard } from '@/components/motion/TiltCard'
 import SectionLabel from './SectionLabel'
 
 const ROW1_CARDS = [
-  'SANDBOX PARA ACTIVOS DIGITALES',
-  'REGISTRO DIGITAL\nDE EMPRESAS',
+  'REGISTRO DIGITAL DE EMPRESAS',
   'AUTOMATIZACIÓN DE TAX & COMPLIANCE',
   'AGENTES Y AUTOMATIZACIÓN DE TAREAS',
 ]
@@ -33,30 +33,25 @@ export default function SectionSolution() {
           </Reveal>
           <Reveal className="flex-1" delay={0.15}>
             <div
-              className="space-y-4 font-body text-sm font-light text-body md:text-base"
-              style={{ fontVariationSettings: "'SOFT' 0, 'WONK' 1" }}
+              className="space-y-4 border-l-2 border-brown-dark/20 py-1 pl-3 font-body text-sm font-light text-body md:text-base font-variation-normal"
             >
               <p>
                 Andén diseña, lanza y opera Zonas Digitales sobre el marco legal
-                existente. No requiere nueva legislación. No reemplaza al Estado:
-                le da al Estado las herramientas para ejecutar mejor, más rápido y
-                con trazabilidad total.
-              </p>
-              <p>
-                &ldquo;No hace falta una nueva ley. Hace falta la capa digital que
-                active las que ya existen.&rdquo;
+                existente. No requiere nueva legislación ni reemplaza al Estado, sino que incorpora la capa de tecnología para ejecutar mejor, más rápido, y con total trazabilidad.
               </p>
             </div>
           </Reveal>
         </div>
 
         {/* Cards grid */}
-        <div className="mt-16 flex flex-col gap-2 lg:mt-[120px]">
+        <div className="mt-8 flex flex-col gap-2 lg:mt-12">
           {/* Row 1 */}
-          <StaggerParent className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-4">
+          <StaggerParent className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
             {ROW1_CARDS.map((text) => (
               <StaggerChild key={text}>
-                <FeatureCard text={text} />
+                <TiltCard>
+                  <FeatureCard text={text} />
+                </TiltCard>
               </StaggerChild>
             ))}
           </StaggerParent>
@@ -64,7 +59,9 @@ export default function SectionSolution() {
           <StaggerParent className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
             {ROW2_CARDS.map((text) => (
               <StaggerChild key={text}>
-                <FeatureCard text={text} />
+                <TiltCard>
+                  <FeatureCard text={text} />
+                </TiltCard>
               </StaggerChild>
             ))}
           </StaggerParent>
@@ -76,8 +73,8 @@ export default function SectionSolution() {
 
 function FeatureCard({ text }: { text: string }) {
   return (
-    <div className="flex min-h-[104px] flex-col gap-4 rounded-xl bg-gray-card p-4">
-      <div className="border-b border-black pb-4">
+    <div className="group flex min-h-[104px] cursor-default flex-col gap-4 rounded-xl bg-gray-card p-4 transition-all duration-200 hover:bg-white hover:shadow-sm">
+      <div className="border-b border-black pb-4 transition-colors duration-200 group-hover:border-brown-dark/40">
         <p className="whitespace-pre-line font-sans text-sm font-normal leading-5 text-brown-dark">
           {text}
         </p>
@@ -87,7 +84,7 @@ function FeatureCard({ text }: { text: string }) {
         height="8"
         viewBox="0 0 16 8"
         fill="none"
-        className="text-brown-dark"
+        className="text-brown-dark transition-transform duration-200 group-hover:translate-x-1"
       >
         <path
           d="M12 0L16 4L12 8"

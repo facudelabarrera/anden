@@ -10,8 +10,8 @@ const TITLE = 'El puente entre la regulación existente y el capital tecnológic
 const WORDS = TITLE.split(' ')
 
 const wordVariants = {
-  hidden: { opacity: 0, y: 18 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: EASE } },
+  hidden: { opacity: 0, y: 18, rotate: -2 },
+  visible: { opacity: 1, y: 0, rotate: 0, transition: { duration: 0.45, ease: EASE } },
 }
 
 export default function Hero() {
@@ -33,8 +33,7 @@ export default function Hero() {
       </motion.h1>
 
       <motion.p
-        className="mx-auto mt-8 max-w-[750px] font-body text-base font-light text-blue-brand md:text-lg lg:mt-12 lg:text-xl"
-        style={{ fontVariationSettings: "'SOFT' 0, 'WONK' 1" }}
+        className="mx-auto mt-8 max-w-[750px] font-body text-base font-light text-blue-brand md:text-lg lg:mt-12 lg:text-xl font-variation-normal"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, delay: 0.55, ease: EASE }}
@@ -53,10 +52,10 @@ export default function Hero() {
         <MagneticButton>
           <a
             href="#contacto"
-            className="inline-flex items-center gap-4 rounded-xl border border-brown-dark/50 px-5 py-2.5 font-sans text-base font-medium text-brown-dark transition-colors hover:bg-brown-dark/5 md:text-lg lg:text-xl"
+            className="group inline-flex items-center gap-4 rounded-xl border border-brown-dark/50 px-5 py-2.5 font-sans text-base font-medium text-brown-dark transition-all duration-200 hover:border-brown-dark/70 hover:bg-brown-dark/5 hover:shadow-sm active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brown-dark/40 focus-visible:ring-offset-2 md:text-lg lg:text-xl"
           >
             Hablar con el Equipo
-            <span className="flex size-6 items-center justify-center rounded bg-lime-brand p-1">
+            <span className="flex size-6 items-center justify-center rounded bg-lime-brand p-1 transition-transform duration-150 group-hover:translate-x-0.5">
               <img src={ARROW_ICON} alt="" className="size-3" />
             </span>
           </a>

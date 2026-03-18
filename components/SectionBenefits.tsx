@@ -12,10 +12,10 @@ const LEFT_BENEFITS = [
 
 const RIGHT_BENEFITS = [
   'Trazabilidad y supervisión en tiempo real',
-  'Captura de valor de la economía del conocimiento',
+  'Captura de valor de la Economía del Conocimiento',
   'Atracción de talento e inversión',
   'Modernización sin nueva legislación',
-  'Desarrollo de ecosistema local',
+  'Desarrollo de ecosistema tecnológico',
 ]
 
 export default function SectionBenefits() {
@@ -34,19 +34,20 @@ export default function SectionBenefits() {
             </h2>
           </Reveal>
           <Reveal className="flex-1" delay={0.15}>
-            <p
-              className="font-body text-sm font-light text-body md:text-base"
-              style={{ fontVariationSettings: "'SOFT' 0, 'WONK' 1" }}
-            >
-              La Zona Digital beneficia simultáneamente a quienes operan dentro
-              de ella y a la jurisdicción que la implementa. Ambos lados se
-              refuerzan mutuamente.
-            </p>
+            <div className="border-l-2 border-brown-dark/20 py-1 pl-3">
+              <p
+                className="font-body text-sm font-light text-body md:text-base font-variation-normal"
+              >
+                La Zona Digital beneficia simultáneamente a quienes operan dentro
+                de ella y a la jurisdicción que la implementa. Ambos lados se
+                refuerzan mutuamente.
+              </p>
+            </div>
           </Reveal>
         </div>
 
         {/* Benefits columns */}
-        <div className="mt-16 flex flex-col gap-8 lg:mt-[120px] lg:flex-row lg:gap-6">
+        <div className="mt-8 flex flex-col gap-8 lg:mt-12 lg:flex-row lg:gap-6">
           {/* Left - For startups */}
           <div className="min-w-0 flex-1">
             <Reveal>
@@ -61,8 +62,7 @@ export default function SectionBenefits() {
                   className="border-b border-orange-brand p-2.5"
                 >
                   <p
-                    className="break-words font-body text-base font-light italic text-blue-brand md:text-lg lg:text-xl"
-                    style={{ fontVariationSettings: "'SOFT' 0, 'WONK' 1" }}
+                    className="break-words font-body text-base font-light italic text-blue-brand md:text-lg lg:text-xl font-variation-normal"
                   >
                     {item}
                   </p>
@@ -85,8 +85,7 @@ export default function SectionBenefits() {
                   className="border-b border-orange-brand p-2.5"
                 >
                   <p
-                    className="break-words font-body text-base font-light italic text-blue-brand md:text-lg lg:text-xl"
-                    style={{ fontVariationSettings: "'SOFT' 0, 'WONK' 1" }}
+                    className="break-words font-body text-base font-light italic text-blue-brand md:text-lg lg:text-xl font-variation-normal"
                   >
                     {item}
                   </p>

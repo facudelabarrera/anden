@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss'
+import plugin from 'tailwindcss/plugin'
 
 const config: Config = {
   content: [
@@ -40,7 +41,12 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    // `zone:` variant — applies when inside .orange-zone
+    plugin(({ addVariant }) => {
+      addVariant('zone', '.orange-zone &')
+    }),
+  ],
 }
 
 export default config

@@ -2,13 +2,14 @@ import { BackgroundDecoration } from '@/components/BackgroundDecoration'
 import Header from '@/components/Header'
 import Hero from '@/components/Hero'
 import Stats from '@/components/Stats'
-import SectionArgentina from '@/components/SectionArgentina'
 import SectionProblem from '@/components/SectionProblem'
 import SectionSolution from '@/components/SectionSolution'
 import SectionBenefits from '@/components/SectionBenefits'
 import SectionGlobal from '@/components/SectionGlobal'
+import SectionArgentina from '@/components/SectionArgentina'
 import SectionTeam from '@/components/SectionTeam'
 import Footer from '@/components/Footer'
+import { OrangeSection } from '@/components/OrangeSection'
 
 export default function Home() {
   return (
@@ -20,13 +21,17 @@ export default function Home() {
         <Header />
         <Hero />
         <Stats />
-        <SectionArgentina />
         <SectionProblem />
         <SectionSolution />
         <SectionBenefits />
-        <SectionGlobal />
-        <SectionTeam />
-        <Footer />
+
+        {/* Orange zone — Global onwards */}
+        <OrangeSection>
+          <SectionGlobal />
+          <SectionArgentina />
+          <SectionTeam />
+          <Footer />
+        </OrangeSection>
       </div>
     </div>
   )
