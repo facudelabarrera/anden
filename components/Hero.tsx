@@ -52,7 +52,7 @@ export default function Hero() {
         <MagneticButton>
           <a
             href="#contacto"
-            className="group inline-flex items-center gap-4 rounded-xl border border-brown-dark/50 px-5 py-2.5 font-sans text-base font-medium text-brown-dark transition-all duration-200 hover:border-brown-dark/70 hover:bg-brown-dark/5 hover:shadow-sm active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brown-dark/40 focus-visible:ring-offset-2 md:text-lg lg:text-xl"
+            className="group inline-flex items-center gap-4 rounded-xl border border-brown-dark/50 px-4 py-1.5 font-sans text-sm font-medium text-brown-dark transition-all duration-200 hover:border-brown-dark/70 hover:bg-brown-dark/5 hover:shadow-sm active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brown-dark/40 focus-visible:ring-offset-2 md:text-base"
           >
             Hablar con el Equipo
             <span className="flex size-6 items-center justify-center rounded bg-lime-brand p-1 transition-transform duration-150 group-hover:translate-x-0.5">

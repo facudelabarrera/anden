@@ -51,7 +51,7 @@ export default function SectionProblem() {
         </div>
 
         {/* Right column — Cards grid + sticker overlay */}
-        <div className="relative flex-shrink-0 lg:w-[496px]">
+        <div className="relative flex-shrink-0 lg:w-[496px] h-full">
           {/*
             Keep a compact 2x2 grid and place the circle as an absolute overlay.
             The gap is intentionally tighter so the circle behaves like a sticker
@@ -79,12 +79,18 @@ export default function SectionProblem() {
               </TiltCard>
             ))}
           </Reveal>
-          <div className="pointer-events-none absolute left-1/2 top-1/2 z-10 hidden size-[64px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-lime-brand shadow-[0_0_0_3px_rgba(224,231,56,0.18)] sm:flex">
-            <span className="text-center font-sans text-[9px] leading-[11px] text-brown-dark">
-              CICLO SIN
-              <br />
-              SALIDA
-            </span>
+          {/* Centered on the grid box (same dimensions as parent via inset-0) */}
+          <div
+            className="pointer-events-none absolute inset-0 z-10 hidden items-center justify-center sm:flex"
+            aria-hidden
+          >
+            <div className="flex size-[64px] shrink-0 items-center justify-center rounded-full bg-lime-brand shadow-[0_0_0_3px_rgba(224,231,56,0.18)]">
+              <span className="text-center font-sans text-[9px] leading-[11px] text-brown-dark">
+                CICLO SIN
+                <br />
+                SALIDA
+              </span>
+            </div>
           </div>
         </div>
       </div>
