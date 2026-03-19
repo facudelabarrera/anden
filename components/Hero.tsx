@@ -16,7 +16,7 @@ const wordVariants = {
 
 export default function Hero() {
   return (
-    <section className="mx-auto max-w-content px-4 pb-16 pt-20 text-center lg:px-0 lg:pt-32">
+    <section className="flex flex-1 flex-col items-center justify-center px-4 pt-28 text-center lg:px-6">
       {/* Word-by-word reveal */}
       <motion.h1
         className="mx-auto max-w-[900px] font-alfarn text-3xl uppercase leading-tight text-blue-brand md:text-4xl lg:text-[60px] lg:leading-[60px]"
@@ -33,7 +33,7 @@ export default function Hero() {
       </motion.h1>
 
       <motion.p
-        className="mx-auto mt-8 max-w-[750px] font-body text-base font-light text-blue-brand md:text-lg lg:mt-12 lg:text-xl font-variation-normal"
+        className="mx-auto mt-4 max-w-[750px] font-body text-base font-light text-blue-brand md:text-lg lg:mt-6 lg:text-xl font-variation-normal"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, delay: 0.55, ease: EASE }}
@@ -44,7 +44,7 @@ export default function Hero() {
       </motion.p>
 
       <motion.div
-        className="mt-8 flex justify-center lg:mt-12"
+        className="mt-10 flex justify-center lg:mt-14"
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.75, ease: EASE }}

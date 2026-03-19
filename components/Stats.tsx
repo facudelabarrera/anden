@@ -22,14 +22,14 @@ const STATS = [
 
 export default function Stats() {
   return (
-    <section className="mx-auto max-w-content px-4 lg:px-0">
-      <StaggerParent className="flex flex-wrap items-center justify-between gap-y-6 px-6 py-4 text-center text-blue-brand">
+    <section className="mx-auto max-w-content shrink-0 px-4 pb-8 lg:px-0 lg:pb-10">
+      <StaggerParent className="grid grid-cols-2 gap-x-4 gap-y-6 py-4 text-center text-blue-brand lg:grid-cols-4 lg:px-6">
         {STATS.map((stat, i) => (
           <StaggerChild
             key={i}
-            className="flex min-w-[140px] flex-1 flex-col items-center justify-center gap-2"
+            className="flex flex-col items-center gap-2"
           >
-            <p className="font-alfarn text-2xl md:text-3xl lg:text-4xl">
+            <p className="whitespace-nowrap font-alfarn text-2xl md:text-3xl lg:text-4xl">
               {'counter' in stat ? (
                 <AnimatedCounter {...stat.counter} />
               ) : (

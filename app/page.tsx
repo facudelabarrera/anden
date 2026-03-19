@@ -19,8 +19,12 @@ export default function Home() {
       {/* Content */}
       <div className="relative z-10">
         <Header />
-        <Hero />
-        <Stats />
+
+        {/* First viewport: header + hero centered + stats at bottom */}
+        <div className="flex h-dvh flex-col">
+          <Hero />
+          <Stats />
+        </div>
         <SectionProblem />
         <SectionSolution />
         <SectionBenefits />

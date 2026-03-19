@@ -48,22 +48,10 @@ export default function Header() {
         } as any}
         transition={TRANSITION}
       >
-        {/* Content constrained to max-w-content */}
-        <div className="mx-auto flex max-w-content items-center justify-between px-4 py-3 lg:px-0">
+        <div className="flex items-center px-4 py-3 lg:px-6">
           <a href="#" aria-label="Andén home" className="transition-opacity duration-150 hover:opacity-75">
             <LogoAnden />
           </a>
-          <motion.button
-            className="rounded-lg px-4 py-2.5 font-sans font-medium text-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-current/40 focus-visible:ring-offset-1"
-            whileTap={{ scale: 0.97 }}
-            animate={{
-              backgroundColor: scrolled ? 'rgba(242,236,224,0.15)' : '#d9d9d9',
-              color: scrolled ? '#f2ece0' : '#390400',
-            }}
-            transition={TRANSITION}
-          >
-            Menú
-          </motion.button>
         </div>
       </motion.div>
     </header>
