@@ -4,20 +4,47 @@ import { StaggerParent, StaggerChild } from '@/components/motion/Stagger'
 import { TiltCard } from '@/components/motion/TiltCard'
 import SectionLabel from './SectionLabel'
 
-const TEAM_IMG = '/assets/team-avatar.png'
+const TEAM_PLACEHOLDER = '/assets/team-placeholder.png'
 
 const TEAM_MEMBERS = [
-  { first: 'Milagros',  last: 'Santamaría', role: 'COS & COFUNDADORA' },
-  { first: 'Teofilo',   last: 'Beato',      role: 'CPA & COFUNDADOR'  },
-  { first: 'Santiago',  last: 'Bermúdez',   role: 'CEO & COFUNDADOR'  },
-  { first: 'Simón',     last: 'Puebla',     role: 'CBO & COFUNDADOR'  },
+  {
+    first: 'Milagros',
+    last: 'Santamaría',
+    role: 'COS & COFUNDADORA',
+    image: '/assets/team/milagros-santamaria.jpg',
+    imageClass: 'object-cover object-top',
+    linkedin: 'https://www.linkedin.com/in/maria-milagros-santamaria-353235b4/',
+  },
+  {
+    first: 'Teófilo',
+    last: 'Beato',
+    role: 'CPA & COFUNDADOR',
+    image: '/assets/team/teofilo-beato.jpg',
+    imageClass: 'object-cover',
+    linkedin: 'https://www.linkedin.com/in/teofilo-beato/',
+  },
+  {
+    first: 'Simón',
+    last: 'Puebla',
+    role: 'CBO & COFUNDADOR',
+    image: '/assets/team/simon-puebla.jpg',
+    imageClass: 'object-cover',
+    linkedin: 'https://www.linkedin.com/in/simonpuebla/',
+  },
+  {
+    first: 'Santiago',
+    last: 'Bermúdez',
+    role: 'CEO & COFUNDADOR',
+    image: TEAM_PLACEHOLDER,
+    imageClass: 'object-cover',
+    linkedin: 'https://www.linkedin.com/in/bermudezsantiago/',
+  },
 ]
 
-const BACKED_BY = [
-  'Protocol Labs ecosystem',
-  'Aztec · ecosistema Argentina',
-  'Juan Benet — Board member',
-]
+const BACKED_BY = {
+  top: ['Protocol Labs', 'Crecimiento', 'Odisea'],
+  bottom: ['Juan Benet', 'Luis Cuende', 'German Garay'],
+}
 
 export default function SectionTeam() {
   return (
@@ -51,37 +78,47 @@ export default function SectionTeam() {
         <StaggerParent className="mt-8 flex flex-col gap-2 lg:mt-12 lg:grid lg:grid-cols-4 lg:gap-[14px]">
           {TEAM_MEMBERS.map((member) => (
             <StaggerChild key={member.first}>
-              <TiltCard className="group relative flex h-full w-full min-w-0 flex-col items-center gap-6 overflow-hidden rounded-3xl border border-cream/40 bg-[#8994ff] p-4 transition-[border-color,box-shadow] duration-200 hover:border-cream/70 hover:shadow-xl lg:gap-8">
+              <TiltCard className="group relative flex h-full w-full min-w-0 flex-col items-center gap-4 overflow-hidden rounded-3xl border border-cream/40 bg-[#8994ff] p-4 transition-[border-color,box-shadow] duration-200 hover:border-cream/70 hover:shadow-xl lg:gap-5">
                 {/* Hover fill overlay */}
                 <div className="pointer-events-none absolute inset-0 z-0 rounded-[inherit] bg-cream/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
                 {/* Name and role */}
                 <div className="relative z-10 min-w-0 text-center">
                   <p
-                    className="font-body text-lg font-semibold text-cream-light md:text-xl lg:text-2xl font-variation-normal"
+                    className="flex flex-col items-center gap-0 font-body text-lg font-semibold leading-none text-cream-light md:text-xl lg:text-2xl font-variation-normal"
                   >
-                    <span className="block">{member.first}</span>
-                    <span className="block">{member.last}</span>
+                    <span className="block leading-none">{member.first}</span>
+                    <span className="block leading-none">{member.last}</span>
                   </p>
                   <p className="mt-1 font-sans text-xs text-cream-light md:text-sm">
                     {member.role}
                   </p>
                 </div>
+
                 {/* Photo */}
                 <div className="relative z-10 size-20 overflow-hidden rounded-full lg:size-[130px]">
                   <Image
-                    src={TEAM_IMG}
+                    src={member.image}
                     alt={`${member.first} ${member.last}`}
                     fill
-                    className="object-cover"
+                    className={member.imageClass}
                     sizes="(min-width: 1024px) 130px, 80px"
                   />
                 </div>
-                {/* Social icons */}
-                <div className="relative z-10 flex flex-wrap items-center justify-center gap-3">
-                  <SocialIcon type="linkedin" />
-                  <SocialIcon type="x" />
-                  <SocialIcon type="other" />
+
+                {/* Social */}
+                <div className="relative z-10 flex items-center justify-center">
+                  <a
+                    href={member.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`LinkedIn de ${member.first} ${member.last}`}
+                    className="flex size-6 items-center justify-center rounded-full text-cream-light transition-all duration-150 hover:scale-110 hover:opacity-80"
+                  >
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                    </svg>
+                  </a>
                 </div>
               </TiltCard>
             </StaggerChild>
@@ -93,52 +130,34 @@ export default function SectionTeam() {
           <p className="font-sans text-base text-cream-light">
             RESPALDADOS POR
           </p>
-          <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-3 lg:gap-6">
-            {BACKED_BY.map((name) => (
-              <div
-                key={name}
-                className="flex items-center justify-center rounded-lg bg-lime-brand px-2.5 py-1"
-              >
-                <p className="text-center font-sans text-base text-brown-dark lg:text-lg">
-                  {name}
-                </p>
-              </div>
-            ))}
+          <div className="flex w-full flex-col gap-3">
+            <div className="grid grid-cols-3 gap-3">
+              {BACKED_BY.top.map((name) => (
+                <div
+                  key={name}
+                  className="flex items-center justify-center rounded-lg bg-lime-brand px-2.5 py-1"
+                >
+                  <p className="text-center font-sans text-base text-brown-dark lg:text-lg">
+                    {name}
+                  </p>
+                </div>
+              ))}
+            </div>
+            <div className="grid grid-cols-3 gap-3">
+              {BACKED_BY.bottom.map((name) => (
+                <div
+                  key={name}
+                  className="flex items-center justify-center rounded-lg bg-[#8994ff] px-2.5 py-1"
+                >
+                  <p className="text-center font-sans text-base text-cream-light lg:text-lg">
+                    {name}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </Reveal>
       </div>
     </section>
-  )
-}
-
-function SocialIcon({ type }: { type: 'linkedin' | 'x' | 'other' }) {
-  const labels: Record<string, string> = {
-    linkedin: 'LinkedIn',
-    x: 'X (Twitter)',
-    other: 'Instagram',
-  }
-
-  return (
-    <a
-      href="#"
-      aria-label={labels[type]}
-      className="flex size-6 items-center justify-center rounded-full text-cream-light transition-all duration-150 hover:scale-110 hover:opacity-80"
-    >
-      {type === 'linkedin' && (
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-        </svg>
-      )}
-      {type === 'x' && (
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-        </svg>
-      )}
-      {type === 'other' && (
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-        </svg>
-      )}
-    </a>
   )
 }

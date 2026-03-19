@@ -5,19 +5,19 @@ import SectionLabel from './SectionLabel'
 
 const REGIONS = [
   {
-    amount: 'USDE 180M+',
+    amount: 'USD 180M+',
     location: 'DMCC · DUBAI',
     category: '/Comercio & Servicios',
     badge: 'REGULACIÓN = CRECIMIENTO',
   },
   {
-    amount: 'USDE 100M+',
+    amount: 'USD 100M+',
     location: 'RAK DAO · RAS AL KHAIMAH',
     category: '/Blockchain / Web3',
     badge: 'INNOVACIÓN = CAPITAL',
   },
   {
-    amount: 'USDE 80M+',
+    amount: 'USD 80M+',
     location: 'E-ESTONIA',
     category: '/Identidad Digital',
     badge: 'CONFIANZA = ESCALA',
