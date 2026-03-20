@@ -56,7 +56,7 @@ export function BackgroundDecoration() {
     >
       {/* ─── Mobile (< 768px) ─────────────────────────────────────── */}
       <svg
-        className="block md:hidden w-full h-auto"
+        className="hidden w-full h-auto"
         width="393" height="5752" viewBox="0 0 393 5752"
         fill="none" xmlns="http://www.w3.org/2000/svg"
       >

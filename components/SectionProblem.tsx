@@ -62,10 +62,10 @@ export default function SectionProblem() {
                 className="flex h-fit w-full min-w-0 flex-col justify-start rounded-xl bg-[#f9982f] p-3 transition-[background-color,box-shadow] duration-200 hover:bg-[#d97818] hover:shadow-xl sm:p-3.5"
               >
                 <div className="flex flex-col gap-1.5">
-                  <p className="whitespace-pre-line font-alfarn text-[15px] font-normal uppercase leading-[1.15] tracking-wide text-cream-light sm:text-[16px] md:text-[17px] md:leading-tight">
+                  <p className="whitespace-pre-line font-alfarn text-[17px] font-normal uppercase leading-[1.15] tracking-wide text-cream-light sm:text-[16px] md:text-[17px] md:leading-tight">
                     {card.title}
                   </p>
-                  <p className="font-sans text-[10px] font-light leading-snug text-cream-light sm:text-xs md:text-[14px] md:leading-snug">
+                  <p className="font-sans text-[13px] font-light leading-snug text-cream-light sm:text-xs md:text-[14px] md:leading-snug">
                     {card.text}
                   </p>
                 </div>

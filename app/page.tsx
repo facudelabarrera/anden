@@ -21,7 +21,7 @@ export default function Home() {
         <Header />
 
         {/* First viewport: header + hero centered + stats at bottom */}
-        <div className="flex h-dvh flex-col">
+        <div className="flex flex-col lg:h-dvh">
           <Hero />
           <Stats />
         </div>

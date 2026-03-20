@@ -16,10 +16,10 @@ const wordVariants = {
 
 export default function Hero() {
   return (
-    <section className="flex flex-1 flex-col items-center justify-center px-4 pt-28 text-center lg:px-6">
+    <section className="flex min-h-[88dvh] flex-1 flex-col items-center justify-center px-4 pt-28 text-center lg:min-h-0 lg:px-6">
       {/* Word-by-word reveal */}
       <motion.h1
-        className="mx-auto max-w-[900px] font-alfarn text-3xl uppercase leading-tight text-blue-brand md:text-4xl lg:text-[60px] lg:leading-[60px]"
+        className="mx-auto max-w-[900px] font-alfarn text-3xl uppercase leading-[1.1] text-blue-brand md:text-4xl md:leading-tight lg:text-[60px] lg:leading-[60px]"
         initial="hidden"
         animate="visible"
         transition={{ staggerChildren: 0.055, delayChildren: 0.15 }}
@@ -51,7 +51,7 @@ export default function Hero() {
       >
         <MagneticButton>
           <a
-            href="#contacto"
+            href="mailto:admin@anden.tech"
             className="group inline-flex items-center gap-4 rounded-xl border border-brown-dark/50 px-4 py-1.5 font-sans text-sm font-medium text-brown-dark transition-all duration-200 hover:border-brown-dark/70 hover:bg-brown-dark/5 hover:shadow-sm active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brown-dark/40 focus-visible:ring-offset-2 md:text-base"
           >
             Hablar con el Equipo

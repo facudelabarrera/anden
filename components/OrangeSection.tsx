@@ -150,7 +150,7 @@ export function OrangeSection({ children }: { children: React.ReactNode }) {
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 z-0 select-none overflow-hidden"
       >
-        <Lines paths={MOBILE}   viewBox="0 0 393 5752"  show="block md:hidden"            offsetY={offsetY} />
+        <Lines paths={MOBILE}   viewBox="0 0 393 5752"  show="hidden"                     offsetY={offsetY} />
         <Lines paths={DESKTOP}  viewBox="0 0 1200 5752" show="hidden md:block xl:hidden"   offsetY={offsetY} />
         <Lines paths={XL}       viewBox="0 0 1920 5752" show="hidden xl:block"             offsetY={offsetY} />
       </div>
