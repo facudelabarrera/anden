@@ -47,7 +47,7 @@
       first: 'Santiago',
       last: 'Bermúdez',
       role: 'CEO & COFUNDADOR',
-      image: TEAM_PLACEHOLDER,
+      image: '/assets/team/santiago-bermudez.jpg',
       imageClass: 'object-cover',
       linkedin: 'https://www.linkedin.com/in/bermudezsantiago/',
     },

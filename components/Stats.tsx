@@ -28,19 +28,19 @@ export default function Stats() {
   return (
     <section className="mx-auto max-w-content shrink-0 px-4 pt-8 pb-6 lg:px-0 lg:pt-0 lg:pb-10">
       {/* Desktop: glass container / Mobile: transparent, no layout container */}
-      <div className="lg:overflow-hidden lg:rounded-2xl lg:border lg:border-blue-brand/[0.15] lg:bg-blue-brand/[0.08] lg:backdrop-blur-md">
+      <div className="lg:overflow-hidden lg:rounded-2xl lg:border lg:border-blue-brand/[0.15] lg:bg-blue-brand lg:backdrop-blur-md">
         <div className="grid grid-cols-1 lg:grid-cols-4">
           {STATS.map((stat, i) => (
             <Reveal key={i} delay={i === 0 ? 0.9 : 0.1 + i * 0.07}>
-              <div className="flex flex-col items-center gap-3 py-6 text-center lg:justify-center lg:gap-2 lg:px-6 lg:py-3.5">
-                <p className="whitespace-nowrap font-sans text-[42px] font-bold leading-none text-blue-brand lg:text-[22px]">
+              <div className="flex flex-col items-center gap-y-2 py-6 lg:px-6 lg:py-5">
+                <p className="shrink-0 whitespace-nowrap font-sans text-[42px] font-bold leading-none text-blue-brand lg:text-[28px] lg:text-cream-light">
                   {'counter' in stat ? (
                     <AnimatedCounter {...stat.counter} />
                   ) : (
                     stat.static
                   )}
                 </p>
-                <p className="font-sans text-[13px] uppercase leading-[17px] tracking-widest text-blue-brand/45 lg:text-[9px] lg:leading-[13px]">
+                <p className="line-clamp-2 text-center font-sans text-[13px] uppercase leading-[17px] tracking-widest text-blue-brand/70 lg:text-[9px] lg:leading-[13px] lg:text-cream-light/60">
                   {stat.line1}
                   <br />
                   {stat.line2}
