@@ -53,10 +53,11 @@
     },
   ]
 
-  const BACKED_BY = {
-    top: ['Protocol Labs', 'Crecimiento', 'Odisea'],
-    bottom: ['Juan Benet', 'Luis Cuende', 'German Garay'],
-  }
+  const BACKED_BY_LOGOS = [
+    { src: '/assets/logo-protocol-labs.png', alt: 'Protocol Labs', imgClass: 'h-10 lg:h-14' },
+    { src: '/assets/logo-crecimiento.svg',   alt: 'Crecimiento',   imgClass: 'h-8 lg:h-10' },
+    { src: '/assets/logo-aragon.svg',         alt: 'Aragon',        imgClass: 'h-8 lg:h-10' },
+  ]
 
   export default function SectionTeam() {
     return (
@@ -153,27 +154,15 @@
               RESPALDADOS POR
             </p>
             <div className="flex w-full flex-col gap-3">
-              <div className="grid grid-cols-1 gap-3 lg:grid-cols-3">
-                {BACKED_BY.top.map((name) => (
-                  <div
-                    key={name}
-                    className="flex items-center justify-center rounded-lg bg-lime-brand px-2.5 py-2 lg:py-1"
-                  >
-                    <p className="text-center font-sans text-base text-brown-dark lg:text-lg">
-                      {name}
-                    </p>
-                  </div>
-                ))}
-              </div>
-              <div className="grid grid-cols-1 gap-3 lg:grid-cols-3">
-                {BACKED_BY.bottom.map((name) => (
-                  <div
-                    key={name}
-                    className="flex items-center justify-center rounded-lg bg-[#8994ff] px-2.5 py-2 lg:py-1"
-                  >
-                    <p className="text-center font-sans text-base text-cream-light lg:text-lg">
-                      {name}
-                    </p>
+              <div className="grid grid-cols-3 gap-6 lg:gap-12">
+                {BACKED_BY_LOGOS.map((logo) => (
+                  <div key={logo.alt} className="flex items-center justify-center">
+                    <img
+                      src={logo.src}
+                      alt={logo.alt}
+                      className={`${logo.imgClass} w-auto object-contain`}
+                      style={{ filter: 'brightness(0) invert(1)' }}
+                    />
                   </div>
                 ))}
               </div>

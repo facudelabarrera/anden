@@ -73,26 +73,12 @@ export default function SectionSolution() {
 
 function FeatureCard({ text }: { text: string }) {
   return (
-    <div className="group flex min-h-[104px] cursor-default flex-col gap-4 rounded-xl bg-gray-card p-4 transition-all duration-200 hover:bg-white hover:shadow-sm">
+    <div className="group flex min-h-[80px] cursor-default flex-col rounded-xl bg-gray-card p-4 transition-all duration-200 hover:bg-white hover:shadow-sm">
       <div className="border-b border-black pb-4 transition-colors duration-200 group-hover:border-brown-dark/40">
         <p className="whitespace-pre-line font-sans text-sm font-normal leading-5 text-brown-dark">
           {text}
         </p>
       </div>
-      <svg
-        width="16"
-        height="8"
-        viewBox="0 0 16 8"
-        fill="none"
-        className="text-brown-dark transition-transform duration-200 group-hover:translate-x-1"
-      >
-        <path
-          d="M12 0L16 4L12 8"
-          stroke="currentColor"
-          strokeWidth="1"
-        />
-        <line x1="0" y1="4" x2="15" y2="4" stroke="currentColor" strokeWidth="1" />
-      </svg>
     </div>
   )
 }

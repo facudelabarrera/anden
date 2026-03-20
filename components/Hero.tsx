@@ -51,7 +51,9 @@ export default function Hero() {
       >
         <MagneticButton>
           <a
-            href="mailto:admin@anden.tech"
+            href="https://mail.google.com/mail/?view=cm&to=teofilo@anden.tech"
+            target="_blank"
+            rel="noopener noreferrer"
             className="group inline-flex items-center gap-4 rounded-xl border border-brown-dark/50 px-4 py-1.5 font-sans text-sm font-medium text-brown-dark transition-all duration-200 hover:border-brown-dark/70 hover:bg-brown-dark/5 hover:shadow-sm active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brown-dark/40 focus-visible:ring-offset-2 md:text-base"
           >
             Hablar con el Equipo

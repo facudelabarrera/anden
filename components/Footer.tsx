@@ -25,7 +25,9 @@ export default function Footer() {
         {/* CTA */}
         <MagneticButton>
           <a
-            href="mailto:admin@anden.tech"
+            href="https://mail.google.com/mail/?view=cm&to=teofilo@anden.tech"
+            target="_blank"
+            rel="noopener noreferrer"
             className="group inline-flex min-w-[220px] items-center gap-4 rounded-xl border border-brown-dark/50 bg-lime-brand px-4 py-1.5 font-sans text-base font-medium text-brown-dark transition-all duration-200 hover:bg-lime-brand/80 hover:shadow-sm active:scale-[0.98]"
           >
             <span className="flex-1">Hablar con el Equipo</span>
