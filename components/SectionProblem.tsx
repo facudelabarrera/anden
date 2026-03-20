@@ -28,9 +28,9 @@ export default function SectionProblem() {
         <SectionLabel text="La oportunidad Regional" />
       </Reveal>
 
-      <div className="mt-6 flex flex-col gap-12 lg:mt-8 lg:flex-row lg:gap-[120px]">
+      <div className="mt-6 flex flex-col gap-12 lg:mt-8 lg:flex-row lg:items-stretch lg:gap-[120px]">
         {/* Left column - Text */}
-        <div className="min-w-0 flex flex-1 flex-col gap-6 lg:gap-8 lg:self-start">
+        <div className="min-w-0 flex flex-1 flex-col gap-6 lg:gap-8">
           <Reveal y={28} delay={0.05}>
             <h2 className="break-words font-alfarn text-2xl uppercase leading-tight text-orange-brand md:text-3xl lg:text-4xl">
               Las zonas económicas de la región operan con lógica del siglo pasado.
@@ -51,28 +51,21 @@ export default function SectionProblem() {
         </div>
 
         {/* Right column — Cards grid + sticker overlay */}
-        <div className="relative flex-shrink-0 lg:w-[496px] h-full">
-          {/*
-            Keep a compact 2x2 grid and place the circle as an absolute overlay.
-            The gap is intentionally tighter so the circle behaves like a sticker
-            that slightly overlaps the four inner corners of the cards.
-          */}
+        <div className="relative h-full w-full flex-shrink-0 lg:w-[496px]">
           <Reveal
             delay={0.1}
-            className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:auto-rows-[152px] sm:gap-3"
+            className="grid h-full grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-3 lg:min-h-0"
           >
             {CARDS.map((card) => (
               <TiltCard
                 key={card.title}
-                className="flex h-full flex-col gap-3 rounded-xl bg-gray-card p-4 transition-[background-color,box-shadow] duration-200 hover:bg-[#8894ff] hover:shadow-xl"
+                className="flex h-fit w-full min-w-0 flex-col justify-start rounded-xl bg-[#f9982f] p-3 transition-[background-color,box-shadow] duration-200 hover:bg-[#d97818] hover:shadow-xl sm:p-3.5"
               >
-                <div className="group flex h-full flex-col gap-3">
-                  <p className="whitespace-pre-line font-sans text-sm font-normal leading-5 text-brown-dark transition-colors duration-200 group-hover:text-cream-light md:text-base">
+                <div className="flex flex-col gap-1.5">
+                  <p className="whitespace-pre-line font-alfarn text-[15px] font-normal uppercase leading-[1.15] tracking-wide text-cream-light sm:text-[16px] md:text-[17px] md:leading-tight">
                     {card.title}
                   </p>
-                  <p
-                    className="font-body text-xs font-light text-brown-dark font-variation-normal transition-colors duration-200 group-hover:text-cream-light"
-                  >
+                  <p className="font-sans text-[10px] font-light leading-snug text-cream-light sm:text-xs md:text-[14px] md:leading-snug">
                     {card.text}
                   </p>
                 </div>
