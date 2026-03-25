@@ -54,10 +54,10 @@
   ]
 
   const BACKED_BY_LOGOS = [
-    { src: '/assets/logo-protocol-labs.png', alt: 'Protocol Labs', imgClass: 'h-12 lg:h-16' },
+    { src: '/assets/logo-protocol-labs.png', alt: 'Protocol Labs', imgClass: 'h-10 lg:h-14' },
     { src: '/assets/logo-crecimiento.svg',   alt: 'Crecimiento',   imgClass: 'h-8 lg:h-10' },
     { src: '/assets/logo-aragon.svg',         alt: 'Aragon',        imgClass: 'h-8 lg:h-10' },
-    { src: '/assets/logo-odisea.svg',         alt: 'Odisea',        imgClass: 'h-6 lg:h-8'  },
+    { src: '/assets/logo-odisea.svg',         alt: 'Odisea',        imgClass: 'h-8 lg:h-10' },
   ]
 
   export default function SectionTeam() {
@@ -121,11 +121,11 @@
 
                   {/* Name and role — right col top on mobile, top on desktop (order-1) */}
                   <div className="relative z-10 min-w-0 self-end text-left lg:order-1 lg:self-auto lg:text-center">
-                    <p className="font-body text-xl font-semibold leading-[0] text-cream-light font-variation-normal lg:flex lg:flex-col lg:items-center lg:text-2xl">
+                    <p className="font-body text-xl font-semibold leading-[0.9] text-cream-light font-variation-normal lg:flex lg:flex-col lg:items-center lg:text-2xl">
                       <span>{member.first} </span>
-                      <span className="lg:block lg:leading-none lg:-mt-1">{member.last}</span>
+                      <span className="lg:block lg:leading-none">{member.last}</span>
                     </p>
-                    <p className="mt-2 font-sans text-[10px] text-cream-light">
+                    <p className="mt-0.5 font-sans text-[10px] text-cream-light">
                       {member.role}
                     </p>
                   </div>
@@ -154,7 +154,7 @@
             <p className="font-sans text-base text-cream-light">
               RESPALDADOS POR
             </p>
-            <div className="flex w-full items-center justify-between gap-6 border-y border-cream-light/20 lg:gap-12">
+            <div className="flex w-full items-center justify-between gap-6 lg:gap-12">
               {BACKED_BY_LOGOS.map((logo) => (
                 <div key={logo.alt} className="flex items-center justify-center">
                   <img
