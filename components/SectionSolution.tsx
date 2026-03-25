@@ -73,9 +73,9 @@ export default function SectionSolution() {
 
 function FeatureCard({ text }: { text: string }) {
   return (
-    <div className="group flex min-h-[80px] cursor-default flex-col rounded-xl bg-gray-card p-4 transition-all duration-200 hover:bg-white hover:shadow-sm">
-      <div className="border-b border-black pb-4 transition-colors duration-200 group-hover:border-brown-dark/40">
-        <p className="whitespace-pre-line font-sans text-sm font-normal leading-5 text-brown-dark">
+    <div className="group flex min-h-[80px] cursor-default flex-col rounded-xl p-4" style={{ backgroundColor: '#8894ff' }}>
+      <div className="border-b border-white/40 pb-4">
+        <p className="whitespace-pre-line font-sans text-sm font-normal leading-5 text-cream-light">
           {text}
         </p>
       </div>

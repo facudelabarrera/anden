@@ -54,10 +54,10 @@
   ]
 
   const BACKED_BY_LOGOS = [
-    { src: '/assets/logo-protocol-labs.png', alt: 'Protocol Labs', imgClass: 'h-10 lg:h-14' },
-    { src: '/assets/logo-crecimiento.svg',   alt: 'Crecimiento',   imgClass: 'h-8 lg:h-10' },
+    { src: '/assets/logo-protocol-labs.png', alt: 'Protocol Labs', imgClass: 'h-12 lg:h-16' },
     { src: '/assets/logo-aragon.svg',         alt: 'Aragon',        imgClass: 'h-8 lg:h-10' },
     { src: '/assets/logo-odisea.svg',         alt: 'Odisea',        imgClass: 'h-8 lg:h-10' },
+    { src: '/assets/logo-crecimiento.svg',   alt: 'Crecimiento',   imgClass: 'h-8 lg:h-10' },
   ]
 
   export default function SectionTeam() {
