@@ -22,7 +22,7 @@ export default function SectionBenefits() {
   return (
     <section className="mx-auto max-w-content px-4 py-16 lg:px-0 lg:py-24">
       <Reveal>
-        <SectionLabel text="La oportunidad Regional" />
+        <SectionLabel text="La soluci?n" />
       </Reveal>
 
       <div className="mt-6 lg:mt-8">

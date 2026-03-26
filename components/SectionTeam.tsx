@@ -154,7 +154,7 @@
             <p className="font-sans text-base text-cream-light">
               RESPALDADOS POR
             </p>
-            <div className="flex w-full items-center justify-between gap-6 lg:gap-12">
+            <div className="grid w-full grid-cols-2 place-items-center gap-x-4 gap-y-3 border-t border-b border-cream-light/20 py-2 lg:flex lg:flex-row lg:items-center lg:justify-between lg:gap-x-12 lg:gap-y-0 lg:py-1">
               {BACKED_BY_LOGOS.map((logo) => (
                 <div key={logo.alt} className="flex items-center justify-center">
                   <img

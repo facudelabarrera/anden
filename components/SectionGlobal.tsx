@@ -28,7 +28,7 @@ export default function SectionGlobal() {
   return (
     <section className="mx-auto max-w-content px-4 py-16 lg:px-0 lg:py-24">
       <Reveal>
-        <SectionLabel text="La solución" textClassName="text-cream-light" />
+        <SectionLabel text="Alrededor del mundo" textClassName="text-cream-light" />
       </Reveal>
 
       <div className="mt-6 lg:mt-8">
