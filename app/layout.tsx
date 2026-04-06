@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Jost, Fraunces, Playfair_Display } from 'next/font/google'
+import { Jost } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/react'
 import { Providers } from '@/components/Providers'
 import './globals.css'
@@ -7,18 +7,6 @@ import './globals.css'
 const jost = Jost({
   subsets: ['latin'],
   variable: '--font-jost',
-  display: 'swap',
-})
-
-const fraunces = Fraunces({
-  subsets: ['latin'],
-  variable: '--font-fraunces',
-  display: 'swap',
-})
-
-const playfair = Playfair_Display({
-  subsets: ['latin'],
-  variable: '--font-display',
   display: 'swap',
 })
 
@@ -39,7 +27,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="es" className={`${jost.variable} ${fraunces.variable} ${playfair.variable}`}>
+    <html lang="es" className={jost.variable}>
       <body className="font-sans">
         <Providers>{children}</Providers>
         <Analytics />
