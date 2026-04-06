@@ -32,8 +32,7 @@ const config: Config = {
       },
       fontFamily: {
         alfarn: ['Alfarn W05', 'Georgia', 'serif'],
-        display: ['var(--font-display)', 'Playfair Display', 'Georgia', 'serif'],
-        body: ['var(--font-fraunces)', 'Georgia', 'serif'],
+        body: ['var(--font-jost)', 'system-ui', 'sans-serif'],
         sans: ['var(--font-jost)', 'system-ui', 'sans-serif'],
       },
       maxWidth: {
