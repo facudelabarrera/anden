@@ -48,7 +48,7 @@ Uses **Framer Motion 12**. All animated components are `'use client'`. Server co
 
 Custom Tailwind tokens defined in `tailwind.config.ts`:
 - Colors: `cream`, `blue-brand` (#303994), `orange-brand` (#f9982f), `lime-brand` (#e0e738)
-- Fonts via CSS variables: `--font-jost`, `--font-fraunces`, `--font-display` (Playfair Display)
+- Fonts: local `Fraunces Variable` for body/default copy and `Alfarn W05` for headings
 - Max content width: `1056px`
 
-Font families (Jost, Fraunces, Playfair Display) are loaded via `next/font/google` in `app/layout.tsx` and exposed as CSS variables applied on `<body>`.
+`Fraunces Variable` (normal + italic) and `Alfarn W05` are loaded locally in `app/globals.css`. Tailwind maps `font-sans` / `font-body` to Fraunces for body text, while headings continue using Alfarn.
