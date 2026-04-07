@@ -11,7 +11,7 @@ export default function SectionLabel({
         <span className="absolute inset-0 rounded-sm bg-orange-brand" />
         <span className="absolute left-1/2 top-1/2 h-3 w-3.5 -translate-x-1/2 -translate-y-1/2 rounded-sm bg-brown-dark" />
       </span>
-      <span className={`font-sans text-sm uppercase ${textClassName}`}>
+      <span className={`font-jost text-sm uppercase tracking-[0.08em] ${textClassName}`}>
         {text}
       </span>
     </div>

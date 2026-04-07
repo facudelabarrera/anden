@@ -1,7 +1,15 @@
 import type { Metadata, Viewport } from 'next'
+import { Jost } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/react'
 import { Providers } from '@/components/Providers'
 import './globals.css'
+
+const jost = Jost({
+  subsets: ['latin'],
+  variable: '--font-jost',
+  weight: ['400', '500', '600'],
+})
+
 export const metadata: Metadata = {
   title: 'Andén — Infraestructura para Zonas Digitales',
   description:
@@ -20,7 +28,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
-      <body className="font-sans">
+      <body className={`${jost.variable} font-sans`}>
         <Providers>{children}</Providers>
         <Analytics />
       </body>

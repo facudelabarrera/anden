@@ -1,6 +1,7 @@
 import { Reveal } from '@/components/motion/Reveal'
 import { StaggerParent, StaggerChild } from '@/components/motion/Stagger'
 import SectionLabel from './SectionLabel'
+import SectionTitle from './SectionTitle'
 
 const LEFT_BENEFITS = [
   'Constitución rápida y 100% digital',
@@ -22,16 +23,16 @@ export default function SectionBenefits() {
   return (
     <section className="mx-auto max-w-content px-4 py-16 lg:px-0 lg:py-24">
       <Reveal>
-        <SectionLabel text="La soluci?n" />
+        <SectionLabel text="La solución" />
       </Reveal>
 
       <div className="mt-6 lg:mt-8">
         {/* Title area */}
         <div className="flex flex-col gap-6 lg:flex-row lg:gap-[51px]">
           <Reveal className="flex-1" y={28} delay={0.05}>
-            <h2 className="break-words font-alfarn text-2xl uppercase leading-tight text-blue-brand md:text-3xl lg:text-4xl">
+            <SectionTitle className="text-blue-brand">
               Una infraestructura que crea valor en ambos lados del ecosistema.
-            </h2>
+            </SectionTitle>
           </Reveal>
           <Reveal className="flex-1" delay={0.15}>
             <div className="border-l-2 border-brown-dark/20 py-1 pl-3">

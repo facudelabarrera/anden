@@ -1,6 +1,7 @@
 import { Reveal } from '@/components/motion/Reveal'
 import { TiltCard } from '@/components/motion/TiltCard'
 import SectionLabel from './SectionLabel'
+import SectionTitle from './SectionTitle'
 
 const CARDS = [
   {
@@ -32,9 +33,9 @@ export default function SectionProblem() {
         {/* Left column - Text */}
         <div className="min-w-0 flex flex-1 flex-col gap-6 lg:gap-8">
           <Reveal y={28} delay={0.05}>
-            <h2 className="break-words font-alfarn text-2xl uppercase leading-tight text-orange-brand md:text-3xl lg:text-4xl">
+            <SectionTitle className="text-orange-brand">
               Las zonas económicas de la región operan con lógica del siglo pasado.
-            </h2>
+            </SectionTitle>
           </Reveal>
           <Reveal delay={0.15}>
             <p

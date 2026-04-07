@@ -33,6 +33,7 @@ const config: Config = {
       fontFamily: {
         alfarn: ['Alfarn W05', 'Georgia', 'serif'],
         body: ['Fraunces Variable', 'Georgia', 'serif'],
+        jost: ['var(--font-jost)', 'Arial', 'sans-serif'],
         sans: ['Fraunces Variable', 'Georgia', 'serif'],
       },
       fontWeight: {

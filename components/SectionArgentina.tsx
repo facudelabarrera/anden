@@ -3,6 +3,7 @@ import { StaggerParent, StaggerChild } from '@/components/motion/Stagger'
 import { TiltCard } from '@/components/motion/TiltCard'
 import { AnimatedCounter } from '@/components/motion/AnimatedCounter'
 import SectionLabel from './SectionLabel'
+import SectionTitle from './SectionTitle'
 
 const STATS_DATA = [
   {
@@ -29,16 +30,16 @@ export default function SectionArgentina() {
   return (
     <section className="mx-auto max-w-content px-4 py-16 lg:px-0 lg:py-24">
       <Reveal>
-        <SectionLabel text="La oportunidad en arg" textClassName="text-cream-light" />
+        <SectionLabel text="La oportunidad en Argentina" textClassName="text-cream-light" />
       </Reveal>
 
       <div className="mt-6 flex flex-col gap-12 lg:mt-8 lg:flex-row lg:gap-[72px]">
         {/* Left column */}
         <div className="min-w-0 flex flex-1 flex-col gap-6 lg:self-start">
           <Reveal y={28} delay={0.05}>
-            <h2 className="break-words font-alfarn text-2xl uppercase leading-tight text-cream md:text-3xl lg:text-4xl">
+            <SectionTitle className="text-cream">
               Argentina: el primer caso de implementación.
-            </h2>
+            </SectionTitle>
           </Reveal>
           <Reveal delay={0.15}>
             <div

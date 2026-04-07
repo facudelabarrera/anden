@@ -2,6 +2,7 @@ import { Reveal } from '@/components/motion/Reveal'
 import { StaggerParent, StaggerChild } from '@/components/motion/Stagger'
 import { TiltCard } from '@/components/motion/TiltCard'
 import SectionLabel from './SectionLabel'
+import SectionTitle from './SectionTitle'
 
 const REGIONS = [
   {
@@ -35,10 +36,10 @@ export default function SectionGlobal() {
         {/* Title area */}
         <div className="flex flex-col gap-6 lg:flex-row lg:gap-[51px]">
           <Reveal className="flex-1" y={28} delay={0.05}>
-            <h2 className="break-words font-alfarn text-2xl uppercase leading-tight text-cream md:text-3xl lg:min-w-[500px] lg:text-4xl">
+            <SectionTitle className="text-cream lg:min-w-[500px]">
               Asia, Emiratos y Europa ya probaron el modelo. Latam aún no tiene su
               equivalente.
-            </h2>
+            </SectionTitle>
           </Reveal>
           <Reveal className="flex-1" delay={0.15}>
             <div className="border-l-2 border-cream/25 py-1 pl-3">
