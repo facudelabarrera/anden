@@ -18,7 +18,7 @@ const CARDS = [
   },
   {
     title: 'MENOR\nCOMPETITIVIDAD',
-    text: 'Sin infraestructura digital-first, la región no compite por el capital que Dubai, Estonia o Singapur capturan.',
+    text: 'Fricción regulatoria y operativa encarece el negocio digital y alarga el time-to-market frente a hubs más ágiles.',
   },
 ]
 
