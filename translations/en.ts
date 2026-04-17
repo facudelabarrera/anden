@@ -2,8 +2,8 @@
 // Strings are taken verbatim from that document. No corrections applied.
 export const en = {
   hero: {
-    title: 'Bridging existing regulation with global technology capital.',
-    body: 'Andén provides the digital infrastructure that turns existing special regimes into engines of the Knowledge Economy. It requires no new legislation, does not replace the State, and delivers measurable results within months.',
+    title: 'Bridging existing regulation with global technology.',
+    body: 'Andén provides the digital infrastructure that turns existing special regimes into engines of the Knowledge Economy. It requires no new legislation, complements the State, and delivers measurable results within months.',
     cta: 'CONTACT THE TEAM',
   },
   stats: {
@@ -55,7 +55,7 @@ export const en = {
   benefits: {
     label: 'The Solution',
     title: 'Infrastructure that creates value on both sides of the ecosystem.',
-    body: 'Digital Zones benefit both operators and the jurisdictions that implement them. Each side reinforces the other.',
+    body: 'Digital Zones benefit both users and the jurisdictions that implement them. Each side reinforces the other.',
     leftBadge: 'FOR STARTUPS AND COMPANIES',
     leftItems: [
       'Fast, fully digital incorporation',
@@ -90,7 +90,7 @@ export const en = {
       'The country offers unique conditions to launch a Digital Zone: world class technology talent, a special regime that regulators can activate, and a Knowledge Economy Law with stackable benefits.',
       'The legal framework already exists. Andén adapts and digitizes it to host technology, AI, fintech, and digital asset companies, without requiring new legislation.',
     ],
-    quote: '\u201cThe special regime exists. What was missing was the digital layer needed to activate it within the knowledge economy.\u201d',
+    quote: '\u201cThe incentives exist. What was missing was the digital layer needed to activate them.\u201d',
     statsDescriptions: [
       'Knowledge Economy Exports, Argentina (2025 record)',
       'Year-over-year growth in knowledge-based service exports',

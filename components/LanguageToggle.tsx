@@ -27,27 +27,36 @@ export default function LanguageToggle({ className, isScrolled = false }: Langua
 
   const isActiveES = lang === 'es'
   const isActiveEN = lang === 'en'
+  const borderWidth = 1
   const thumbInset = 2
   const toggleWidth = 112
   const toggleHeight = 34
-  const thumbWidth = 53
+  // Descontar border (box-sizing: border-box) para que el inset sea uniforme en los 4 lados
+  const innerWidth = toggleWidth - borderWidth * 2   // 110
+  const innerHeight = toggleHeight - borderWidth * 2  // 32
+  const thumbWidth = (innerWidth - thumbInset * 2) / 2 // 53
+  const thumbHeight = innerHeight - thumbInset * 2     // 28
 
   // Light mode colors
   const lightMode = {
-    containerBg: '#f7f3e7',
-    containerBorder: '#8b7355',
+    containerBg: '#f5f0e4',
+    containerBorder: 'rgba(139,115,85,0.5)',
+    containerShadow: 'inset 0 1px 3px rgba(0,0,0,0.07)',
     activeBg: '#e0e738',
+    activeShadow: '0 1px_3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.08)',
     activeText: '#303994',
-    inactiveText: '#5c4a3d',
+    inactiveText: '#7a6250',
   }
 
   // Dark mode colors (scrolled)
   const darkMode = {
-    containerBg: '#2d1f1a',
-    containerBorder: '#5c4a3d',
+    containerBg: '#251a15',
+    containerBorder: 'rgba(92,74,61,0.6)',
+    containerShadow: 'inset 0 1px 3px rgba(0,0,0,0.2)',
     activeBg: '#e0e738',
+    activeShadow: '0 1px 3px rgba(0,0,0,0.25), 0 1px 2px rgba(0,0,0,0.15)',
     activeText: '#303994',
-    inactiveText: '#a8917a',
+    inactiveText: '#9c8470',
   }
 
   const colors = isScrolled ? darkMode : lightMode
@@ -58,6 +67,7 @@ export default function LanguageToggle({ className, isScrolled = false }: Langua
       style={{
         borderColor: colors.containerBorder,
         backgroundColor: colors.containerBg,
+        boxShadow: colors.containerShadow,
         height: `${toggleHeight}px`,
         width: `${toggleWidth}px`,
         padding: `${thumbInset}px`,
@@ -65,32 +75,32 @@ export default function LanguageToggle({ className, isScrolled = false }: Langua
       role="group"
       aria-label="Selector de idioma"
     >
-      {/* Active pill - independent rounded element */}
+      {/* Active pill */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute rounded-[8px] shadow-[0_1px_2px_rgba(57,4,0,0.08)] transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]"
+        className="pointer-events-none absolute rounded-[8px]"
         style={{
           backgroundColor: colors.activeBg,
+          boxShadow: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.08)',
           width: `${thumbWidth}px`,
-          height: `${toggleHeight - thumbInset * 2}px`,
-          left: isActiveES ? `${thumbInset}px` : `${toggleWidth - thumbInset - thumbWidth}px`,
+          height: `${thumbHeight}px`,
+          left: isActiveES ? `${thumbInset}px` : `${thumbInset + thumbWidth}px`,
           top: `${thumbInset}px`,
+          transition: 'left 200ms cubic-bezier(0.34, 1.56, 0.64, 1)',
         }}
       />
 
       {/* ES Button */}
       <button
         onClick={() => setLang('es')}
-        className="relative z-10 flex h-[30px] items-center justify-center rounded-[8px] outline-none transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-blue-brand/30"
+        className="relative z-10 flex h-full items-center justify-center rounded-[8px] outline-none transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-blue-brand/30"
         aria-pressed={isActiveES}
         aria-label="Cambiar a español"
         type="button"
       >
         <span
-          className="block -translate-y-[0.5px] text-[11px] leading-none tracking-[0.06em] font-alfarn font-bold"
-          style={{
-            color: isActiveES ? colors.activeText : colors.inactiveText,
-          }}
+          className="text-[11px] leading-none tracking-[0.07em] font-alfarn font-bold"
+          style={{ color: isActiveES ? colors.activeText : colors.inactiveText }}
         >
           ES
         </span>
@@ -99,16 +109,14 @@ export default function LanguageToggle({ className, isScrolled = false }: Langua
       {/* EN Button */}
       <button
         onClick={() => setLang('en')}
-        className="relative z-10 flex h-[30px] items-center justify-center rounded-[8px] outline-none transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-blue-brand/30"
+        className="relative z-10 flex h-full items-center justify-center rounded-[8px] outline-none transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-blue-brand/30"
         aria-pressed={isActiveEN}
         aria-label="Switch to English"
         type="button"
       >
         <span
-          className="block -translate-y-[0.5px] text-[11px] leading-none tracking-[0.06em] font-alfarn font-bold"
-          style={{
-            color: isActiveEN ? colors.activeText : colors.inactiveText,
-          }}
+          className="text-[11px] leading-none tracking-[0.07em] font-alfarn font-bold"
+          style={{ color: isActiveEN ? colors.activeText : colors.inactiveText }}
         >
           EN
         </span>
