@@ -1,9 +1,15 @@
+'use client'
+
 import { Reveal } from '@/components/motion/Reveal'
 import { MagneticButton } from '@/components/motion/MagneticButton'
+import { useTranslation } from '@/lib/i18n'
 
 const ARROW_DARK = '/assets/arrow-dark.svg'
 
 export default function Footer() {
+  const t = useTranslation()
+  const { quote, cta, copyright } = t.footer
+
   return (
     <footer
       id="contacto"
@@ -15,8 +21,7 @@ export default function Footer() {
         <p
           className="max-w-[500px] text-center font-body text-base font-light text-lime-brand md:text-lg font-variation-normal"
         >
-          Una Zona Digital puede estar en marcha en 6 meses. El marco legal
-          existe. La tecnología está lista. Solo falta la decisión.
+          {quote}
         </p>
 
         {/* Divider */}
@@ -30,7 +35,7 @@ export default function Footer() {
             rel="noopener noreferrer"
             className="group inline-flex min-w-[220px] items-center gap-4 rounded-xl border border-brown-dark/50 bg-lime-brand px-4 py-1.5 font-sans text-base font-medium text-brown-dark transition-all duration-200 hover:bg-lime-brand/80 hover:shadow-sm active:scale-[0.98]"
           >
-            <span className="flex-1">Hablar con el Equipo</span>
+            <span className="flex-1">{cta}</span>
             <span className="flex size-6 items-center justify-center rounded bg-brown-dark p-1 transition-transform duration-150 group-hover:translate-x-0.5">
               <img src={ARROW_DARK} alt="" className="size-3" />
             </span>
@@ -42,8 +47,7 @@ export default function Footer() {
 
         {/* Copyright */}
         <p className="text-center font-sans text-sm text-cream-light md:text-base">
-          © 2026 ANDÉN · Infraestructura para Zonas Digitales · Buenos Aires,
-          Argentina
+          {copyright}
         </p>
 
         {/* Social */}

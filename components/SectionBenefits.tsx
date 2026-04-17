@@ -1,29 +1,19 @@
+'use client'
+
 import { Reveal } from '@/components/motion/Reveal'
 import { StaggerParent, StaggerChild } from '@/components/motion/Stagger'
 import SectionLabel from './SectionLabel'
 import SectionTitle from './SectionTitle'
-
-const LEFT_BENEFITS = [
-  'Constitución rápida y 100% digital',
-  'Certidumbre regulatoria',
-  'Acceso a capital global',
-  'Reducción de costos de triangulación',
-  'Escalabilidad desde Latam',
-]
-
-const RIGHT_BENEFITS = [
-  'Trazabilidad y supervisión en tiempo real',
-  'Captura de valor de la Economía del Conocimiento',
-  'Atracción de talento e inversión',
-  'Modernización sin nueva legislación',
-  'Desarrollo de ecosistema tecnológico',
-]
+import { useTranslation } from '@/lib/i18n'
 
 export default function SectionBenefits() {
+  const t = useTranslation()
+  const { label, title, body, leftBadge, leftItems, rightBadge, rightItems } = t.benefits
+
   return (
     <section className="mx-auto max-w-content px-4 py-16 lg:px-0 lg:py-24">
       <Reveal>
-        <SectionLabel text="La solución" />
+        <SectionLabel text={label} />
       </Reveal>
 
       <div className="mt-6 lg:mt-8">
@@ -31,7 +21,7 @@ export default function SectionBenefits() {
         <div className="flex flex-col gap-6 lg:flex-row lg:gap-[51px]">
           <Reveal className="flex-1" y={28} delay={0.05}>
             <SectionTitle className="text-blue-brand">
-              Una infraestructura que crea valor en ambos lados del ecosistema.
+              {title}
             </SectionTitle>
           </Reveal>
           <Reveal className="flex-1" delay={0.15}>
@@ -39,9 +29,7 @@ export default function SectionBenefits() {
               <p
                 className="font-body text-sm font-light text-body md:text-base font-variation-normal"
               >
-                La Zona Digital beneficia simultáneamente a quienes operan dentro
-                de ella y a la jurisdicción que la implementa. Ambos lados se
-                refuerzan mutuamente.
+                {body}
               </p>
             </div>
           </Reveal>
@@ -53,13 +41,13 @@ export default function SectionBenefits() {
           <div className="min-w-0 flex-1">
             <Reveal>
               <span className="inline-flex items-center rounded bg-blue-brand px-2.5 py-1 font-sans text-sm text-cream-light md:text-base">
-                PARA STARTUPS Y EMPRESAS
+                {leftBadge}
               </span>
             </Reveal>
             <StaggerParent className="mt-6">
-              {LEFT_BENEFITS.map((item) => (
+              {leftItems.map((item, i) => (
                 <StaggerChild
-                  key={item}
+                  key={i}
                   className="border-b border-orange-brand p-2.5"
                 >
                   <p
@@ -76,13 +64,13 @@ export default function SectionBenefits() {
           <div className="min-w-0 flex-1">
             <Reveal delay={0.1}>
               <span className="inline-flex items-center rounded bg-orange-brand px-2.5 py-1 font-sans text-sm text-brown-dark md:text-base">
-                PARA EL OPERADOR
+                {rightBadge}
               </span>
             </Reveal>
             <StaggerParent className="mt-6">
-              {RIGHT_BENEFITS.map((item) => (
+              {rightItems.map((item, i) => (
                 <StaggerChild
-                  key={item}
+                  key={i}
                   className="border-b border-orange-brand p-2.5"
                 >
                   <p

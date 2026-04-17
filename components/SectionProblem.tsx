@@ -1,32 +1,19 @@
+'use client'
+
 import { Reveal } from '@/components/motion/Reveal'
 import { TiltCard } from '@/components/motion/TiltCard'
 import SectionLabel from './SectionLabel'
 import SectionTitle from './SectionTitle'
-
-const CARDS = [
-  {
-    title: 'REGULACIÓN\nDESACTUALIZADA',
-    text: 'Marcos del siglo pasado. No contemplan IA, tokenización ni servicios digitales.',
-  },
-  {
-    title: 'INFRAESTRUCTURA\nANACRÓNICA',
-    text: 'Procesos manuales, silos entre organismos. Modernizar toma 7+ años.',
-  },
-  {
-    title: 'FUGA DE CAPITAL\nY TALENTO',
-    text: 'Sin infraestructura digital-first, la región no compite por el capital que Dubai, Estonia o Singapur capturan.',
-  },
-  {
-    title: 'MENOR\nCOMPETITIVIDAD',
-    text: 'Fricción regulatoria y operativa encarece el negocio digital y alarga el time-to-market frente a hubs más ágiles.',
-  },
-]
+import { useTranslation } from '@/lib/i18n'
 
 export default function SectionProblem() {
+  const t = useTranslation()
+  const { label, title, body, sticker, cards } = t.problem
+
   return (
     <section className="mx-auto max-w-content px-4 py-16 lg:px-0 lg:py-24">
       <Reveal>
-        <SectionLabel text="La oportunidad Regional" />
+        <SectionLabel text={label} />
       </Reveal>
 
       <div className="mt-6 flex flex-col gap-12 lg:mt-8 lg:flex-row lg:items-stretch lg:gap-[120px]">
@@ -34,19 +21,14 @@ export default function SectionProblem() {
         <div className="min-w-0 flex flex-1 flex-col gap-6 lg:gap-8">
           <Reveal y={28} delay={0.05}>
             <SectionTitle className="text-orange-brand">
-              Las zonas económicas de la región operan con lógica del siglo pasado.
+              {title}
             </SectionTitle>
           </Reveal>
           <Reveal delay={0.15}>
             <p
               className="font-body text-sm font-light text-body md:text-base font-variation-normal"
             >
-              Diseñadas para el comercio físico de los años 90, las ZEE existentes
-              no contemplan la economía digital. Sus marcos regulatorios, procesos
-              e infraestructura generan un ciclo que ninguna jurisdicción puede
-              romper sola: regulación desactualizada e infraestructura anacrónica
-              reducen la competitividad, lo que concentra capital y talento en
-              otras jurisdicciones, profundizando la brecha.
+              {body}
             </p>
           </Reveal>
         </div>
@@ -55,12 +37,12 @@ export default function SectionProblem() {
         <div className="relative h-full w-full flex-shrink-0 lg:w-[496px]">
           <Reveal
             delay={0.1}
-            className="grid h-full grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-3 lg:min-h-0"
+            className="grid h-full grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-3 lg:grid-rows-2"
           >
-            {CARDS.map((card) => (
+            {cards.map((card, i) => (
               <TiltCard
-                key={card.title}
-                className="flex h-fit w-full min-w-0 flex-col justify-start rounded-xl bg-[#f9982f] p-3 transition-[background-color,box-shadow] duration-200 hover:bg-[#d97818] hover:shadow-xl sm:p-3.5"
+                key={i}
+                className="flex w-full min-w-0 flex-col justify-start rounded-xl bg-[#f9982f] p-3 transition-[background-color,box-shadow] duration-200 hover:bg-[#d97818] hover:shadow-xl sm:min-h-[140px] sm:p-3.5 lg:h-full lg:min-h-0"
               >
                 <div className="flex flex-col gap-1.5">
                   <p className="whitespace-pre-line font-alfarn text-[17px] font-normal uppercase leading-[1.15] tracking-wide text-cream-light sm:text-[16px] md:text-[17px] md:leading-tight">
@@ -79,10 +61,8 @@ export default function SectionProblem() {
             aria-hidden
           >
             <div className="flex size-[64px] shrink-0 items-center justify-center rounded-full bg-lime-brand shadow-[0_0_0_3px_rgba(224,231,56,0.18)]">
-              <span className="text-center font-sans text-[9px] leading-[11px] text-brown-dark">
-                CICLO SIN
-                <br />
-                SALIDA
+              <span className="whitespace-pre-line text-center font-sans text-[9px] leading-[11px] text-brown-dark">
+                {sticker}
               </span>
             </div>
           </div>

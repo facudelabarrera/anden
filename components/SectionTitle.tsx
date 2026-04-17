@@ -9,7 +9,7 @@ export default function SectionTitle({
 }: SectionTitleProps) {
   return (
     <h2
-      className={`break-words font-jost text-2xl uppercase leading-tight md:text-3xl lg:text-4xl ${className}`.trim()}
+      className={`break-words font-alfarn text-2xl uppercase leading-tight md:text-3xl lg:text-4xl ${className}`.trim()}
     >
       {children}
     </h2>

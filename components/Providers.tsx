@@ -2,12 +2,12 @@
 
 import { MotionConfig } from 'framer-motion'
 import type { ReactNode } from 'react'
+import { LanguageProvider } from '@/lib/i18n'
 
-/**
- * App-level motion configuration.
- * reducedMotion="user" makes ALL motion components respect
- * the user's prefers-reduced-motion OS setting automatically.
- */
 export function Providers({ children }: { children: ReactNode }) {
-  return <MotionConfig reducedMotion="user">{children}</MotionConfig>
+  return (
+    <LanguageProvider>
+      <MotionConfig reducedMotion="user">{children}</MotionConfig>
+    </LanguageProvider>
+  )
 }

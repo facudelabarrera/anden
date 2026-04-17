@@ -1,35 +1,20 @@
+'use client'
+
 import { Reveal } from '@/components/motion/Reveal'
 import { StaggerParent, StaggerChild } from '@/components/motion/Stagger'
 import { TiltCard } from '@/components/motion/TiltCard'
 import SectionLabel from './SectionLabel'
 import SectionTitle from './SectionTitle'
-
-const REGIONS = [
-  {
-    amount: 'USD 180M+',
-    location: 'DMCC · DUBAI',
-    category: '/Comercio & Servicios',
-    badge: 'REGULACIÓN = CRECIMIENTO',
-  },
-  {
-    amount: 'USD 100M+',
-    location: 'RAK DAO · RAS AL KHAIMAH',
-    category: '/Blockchain / Web3',
-    badge: 'INNOVACIÓN = CAPITAL',
-  },
-  {
-    amount: 'USD 80M+',
-    location: 'E-ESTONIA',
-    category: '/Identidad Digital',
-    badge: 'CONFIANZA = ESCALA',
-  },
-]
+import { useTranslation } from '@/lib/i18n'
 
 export default function SectionGlobal() {
+  const t = useTranslation()
+  const { label, title, body, regions } = t.global
+
   return (
     <section className="mx-auto max-w-content px-4 py-16 lg:px-0 lg:py-24">
       <Reveal>
-        <SectionLabel text="Alrededor del mundo" textClassName="text-cream-light" />
+        <SectionLabel text={label} textClassName="text-cream-light" />
       </Reveal>
 
       <div className="mt-6 lg:mt-8">
@@ -37,8 +22,7 @@ export default function SectionGlobal() {
         <div className="flex flex-col gap-6 lg:flex-row lg:gap-[51px]">
           <Reveal className="flex-1" y={28} delay={0.05}>
             <SectionTitle className="text-cream lg:min-w-[500px]">
-              Asia, Emiratos y Europa ya probaron el modelo. Latam aún no tiene su
-              equivalente.
+              {title}
             </SectionTitle>
           </Reveal>
           <Reveal className="flex-1" delay={0.15}>
@@ -46,8 +30,7 @@ export default function SectionGlobal() {
               <p
                 className="font-body text-sm font-light text-cream-light md:text-base font-variation-normal"
               >
-                Tres regiones demostraron que las zonas digitales generan valor a
-                escala. La oportunidad regional está abierta.
+                {body}
               </p>
             </div>
           </Reveal>
@@ -55,8 +38,8 @@ export default function SectionGlobal() {
 
         {/* Region cards */}
         <StaggerParent className="mt-8 grid grid-cols-1 gap-4 lg:mt-12 lg:grid-cols-3 lg:gap-[18px]">
-          {REGIONS.map((region) => (
-            <StaggerChild key={region.location}>
+          {regions.map((region, i) => (
+            <StaggerChild key={i}>
               <TiltCard className="grid h-full grid-rows-[auto_1fr_auto] gap-6 rounded-2xl border border-cream/40 bg-[#8894ff] p-4 sm:gap-8">
                 {/* Top row */}
                 <div className="grid min-h-[44px] grid-cols-[auto_1fr] items-start gap-x-3 gap-y-2">

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import { useLanguage } from '@/lib/i18n'
 
 function LogoAnden() {
   return (
@@ -30,6 +31,7 @@ const TRANSITION = { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] as const }
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false)
+  const { lang, setLang } = useLanguage()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60)
@@ -39,7 +41,6 @@ export default function Header() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
-      {/* Full-width background */}
       <motion.div
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         animate={{
@@ -52,6 +53,17 @@ export default function Header() {
           <a href="#" aria-label="Andén home" className="transition-opacity duration-150 hover:opacity-75">
             <LogoAnden />
           </a>
+
+          <button
+            onClick={() => setLang(lang === 'es' ? 'en' : 'es')}
+            className="ml-auto flex items-center gap-1 font-sans text-[11px] uppercase tracking-widest transition-opacity duration-150 hover:opacity-70"
+            style={{ color: 'var(--logo-fill, #390400)' }}
+            aria-label={lang === 'es' ? 'Switch to English' : 'Cambiar a español'}
+          >
+            <span style={{ fontWeight: lang === 'es' ? 600 : 400, opacity: lang === 'es' ? 1 : 0.45 }}>ES</span>
+            <span style={{ opacity: 0.35 }}>·</span>
+            <span style={{ fontWeight: lang === 'en' ? 600 : 400, opacity: lang === 'en' ? 1 : 0.45 }}>EN</span>
+          </button>
         </div>
       </motion.div>
     </header>

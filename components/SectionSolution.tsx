@@ -1,26 +1,20 @@
+'use client'
+
 import { Reveal } from '@/components/motion/Reveal'
 import { StaggerParent, StaggerChild } from '@/components/motion/Stagger'
 import { TiltCard } from '@/components/motion/TiltCard'
 import SectionLabel from './SectionLabel'
 import SectionTitle from './SectionTitle'
-
-const ROW1_CARDS = [
-  'REGISTRO DIGITAL DE EMPRESAS',
-  'AUTOMATIZACIÓN DE TAX & COMPLIANCE',
-  'AGENTES Y AUTOMATIZACIÓN DE TAREAS',
-]
-
-const ROW2_CARDS = [
-  'PANEL OPERATIVO DEL ESTADO',
-  'INTEROPERABILIDAD ENTRE ORGANISMOS',
-  'KIT DE DESPLIEGUE',
-]
+import { useTranslation } from '@/lib/i18n'
 
 export default function SectionSolution() {
+  const t = useTranslation()
+  const { label, title, body, features } = t.solution
+
   return (
     <section className="mx-auto max-w-content px-4 py-16 lg:px-0 lg:py-24">
       <Reveal>
-        <SectionLabel text="La solución" />
+        <SectionLabel text={label} />
       </Reveal>
 
       <div className="mt-6 lg:mt-8">
@@ -28,18 +22,14 @@ export default function SectionSolution() {
         <div className="flex flex-col gap-6 lg:flex-row lg:gap-[51px]">
           <Reveal className="flex-1" y={28} delay={0.05}>
             <SectionTitle className="text-blue-brand">
-              Andén OS: el sistema operativo para regímenes especiales de la
-              economía.
+              {title}
             </SectionTitle>
           </Reveal>
           <Reveal className="flex-1" delay={0.15}>
             <div
               className="space-y-4 border-l-2 border-brown-dark/20 py-1 pl-3 font-body text-sm font-light text-body md:text-base font-variation-normal"
             >
-              <p>
-                Andén diseña, lanza y opera Zonas Digitales sobre el marco legal
-                existente. No requiere nueva legislación ni reemplaza al Estado, sino que incorpora la capa de tecnología para ejecutar mejor, más rápido, y con total trazabilidad.
-              </p>
+              <p>{body}</p>
             </div>
           </Reveal>
         </div>
@@ -48,8 +38,8 @@ export default function SectionSolution() {
         <div className="mt-8 flex flex-col gap-2 lg:mt-12">
           {/* Row 1 */}
           <StaggerParent className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
-            {ROW1_CARDS.map((text) => (
-              <StaggerChild key={text}>
+            {features.slice(0, 3).map((text, i) => (
+              <StaggerChild key={i}>
                 <TiltCard>
                   <FeatureCard text={text} />
                 </TiltCard>
@@ -58,8 +48,8 @@ export default function SectionSolution() {
           </StaggerParent>
           {/* Row 2 */}
           <StaggerParent className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
-            {ROW2_CARDS.map((text) => (
-              <StaggerChild key={text}>
+            {features.slice(3).map((text, i) => (
+              <StaggerChild key={i}>
                 <TiltCard>
                   <FeatureCard text={text} />
                 </TiltCard>
