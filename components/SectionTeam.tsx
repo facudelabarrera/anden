@@ -55,6 +55,7 @@ const BACKED_BY_LOGOS = [
   { src: '/assets/logo-aragon.svg',        alt: 'Aragon',        imgClass: 'h-8 lg:h-10' },
   { src: '/assets/logo-odisea.svg',        alt: 'Odisea',        imgClass: 'h-8 lg:h-10' },
   { src: '/assets/logo-crecimiento.svg',  alt: 'Crecimiento',   imgClass: 'h-8 lg:h-10' },
+  { src: '/assets/nvidia-inception-program-badge-rgb-1c-blk-for-screen.svg', alt: 'NVIDIA Inception Program', imgClass: 'h-10 lg:h-12', preserveColor: true },
 ]
 
 export default function SectionTeam() {
@@ -159,7 +160,7 @@ export default function SectionTeam() {
                   src={logo.src}
                   alt={logo.alt}
                   className={`${logo.imgClass} w-auto object-contain`}
-                  style={{ filter: 'brightness(0) invert(1)' }}
+                  style={logo.preserveColor ? undefined : { filter: 'brightness(0) invert(1)' }}
                 />
               </div>
             ))}
